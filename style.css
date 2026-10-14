@@ -1,0 +1,868 @@
+/* --- 1. Global Reset --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #f5f5f7;
+  color: #1d1d1f;
+}
+
+/* --- 2. Apple Global Nav Bar --- */
+.navbar {
+  background-color: transparent;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+.navbar::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background-color: rgba(22, 22, 23, 0.72);
+  backdrop-filter: blur(48px) saturate(180%);
+  -webkit-backdrop-filter: blur(48px) saturate(180%);
+  content: "";
+  pointer-events: none;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  margin-right: 16px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  height: 100%;
+}
+
+/* --- 3. Logo (Left) & Search (Right) --- */
+.logo {
+  height: 18px;
+  width: auto;
+  display: block;
+  filter: invert(1);
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+}
+
+.logo:hover {
+  opacity: 1;
+}
+
+.search-item {
+  display: flex;
+  align-items: center;
+  margin-left: 16px;
+}
+
+.mobile-menu-toggle,
+.search-toggle {
+  display: none;
+}
+
+/* --- 4. Navigation Links --- */
+.nav-links li {
+  position: static;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.nav-links > li > a {
+  color: #f5f5f7;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 400;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+  padding: 0 4px;
+}
+
+.nav-links > li > a:hover {
+  opacity: 1;
+}
+
+/* --- 5. Full-Screen Mega Menu Dropdown --- */
+.dropdown-menu {
+  position: absolute;
+  top: 48px;
+  left: 0;
+  width: 100vw;
+  background-color: rgba(22, 22, 23, 0.72);
+  backdrop-filter: blur(48px) saturate(180%);
+  -webkit-backdrop-filter: blur(48px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 30px 50px rgba(0, 0, 0, 0.5);
+  padding: 40px 0;
+  
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.3s cubic-bezier(0.25, 1, 0.5, 1), 
+              transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), 
+              visibility 0.3s;
+}
+
+.dropdown-content {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.menu-column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 180px;
+}
+
+.menu-category {
+  font-size: 12px;
+  color: #86868b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+/* --- Big Apple-Style Menu Text --- */
+.dropdown-menu a {
+  font-size: 22px;
+  font-weight: 600;
+  color: #f5f5f7;
+  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity 0.2s ease, color 0.2s ease;
+  padding: 2px 0;
+  display: block;
+}
+
+.dropdown-menu a:hover {
+  opacity: 1;
+  color: #2997ff;
+}
+
+/* --- 6. Hover Reveal Logic --- */
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* --- 7. Search Bar --- */
+.search-bar {
+  background-color: #1d1d1f;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  color: #f5f5f7;
+  padding: 6px 14px;
+  font-size: 12px;
+  outline: none;
+  width: 140px;
+  transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.2s, border-color 0.2s;
+}
+
+.search-bar::placeholder {
+  color: #86868b;
+}
+
+.search-bar:focus {
+  background-color: #2b2b2e;
+  border-color: rgba(255, 255, 255, 0.3);
+  width: 200px;
+}
+
+.search-toggle svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: 1.6;
+}
+
+/* --- 8. iPhone Campaign Banner --- */
+.hero {
+  position: relative;
+  width: calc(100% - 24px);
+  margin: 24px auto 0;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.hero-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.hero-actions {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.hero-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 19px;
+  border: 1px solid #0071e3;
+  border-radius: 24px;
+  font-size: 16px;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.hero-button-primary {
+  color: #fff;
+  background-color: #0071e3;
+}
+
+.hero-button-primary:hover {
+  background-color: #0077ed;
+}
+
+.hero-button-secondary {
+  color: #06c;
+  background-color: rgba(245, 245, 247, 0.8);
+}
+
+.hero-button-secondary:hover {
+  color: #fff;
+  background-color: #0071e3;
+}
+
+.hero-button:focus-visible {
+  outline: 3px solid #1d1d1f;
+  outline-offset: 3px;
+}
+
+/* --- 9. Mac and iPad Campaign Panels --- */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding: 12px;
+}
+
+.product-panel {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background-color: #000;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-panel:hover,
+.product-panel:focus-within {
+  z-index: 1;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
+  transform: translateY(-6px);
+}
+
+.product-panel-link {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+}
+
+.product-panel-link:focus-visible {
+  outline: 3px solid #0071e3;
+  outline-offset: -5px;
+}
+
+.product-image {
+  position: absolute;
+  z-index: 1;
+  top: 150px;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 150px);
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.product-copy {
+  position: relative;
+  z-index: 2;
+  padding: 28px 16px 20px;
+  background-color: #fff;
+}
+
+.product-copy h2 {
+  margin-bottom: 8px;
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+}
+
+.product-tagline {
+  margin-bottom: 16px;
+  font-size: 16px;
+  line-height: 1.35;
+}
+
+.mac-panel {
+  background-color: #000;
+  color: #f5f5f7;
+}
+
+.mac-panel .product-copy {
+  background-color: #000;
+}
+
+.ipad-panel {
+  color: #f5f5f7;
+}
+
+.ipad-panel .product-copy {
+  background-color: #000;
+}
+
+.air-panel {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  grid-template-rows: minmax(0, 1fr);
+  align-items: center;
+  aspect-ratio: 2.2 / 1;
+  background-color: #fafafa;
+  color: #1d1d1f;
+  text-align: left;
+}
+
+.air-panel .product-copy {
+  padding: 28px 24px 28px 12%;
+  background-color: transparent;
+}
+
+.air-panel .product-image {
+  position: static;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.product-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.product-actions .hero-button-secondary {
+  background-color: rgba(245, 245, 247, 0.9);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-panel {
+    transition: none;
+  }
+}
+
+/* --- 10. Photo Carousel --- */
+.moments-carousel {
+  margin: 28px 12px 0;
+  padding: 32px 0;
+}
+
+.moments-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0 12px 20px;
+}
+
+.moments-eyebrow {
+  margin-bottom: 6px;
+  color: #6e6e73;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.moments-header h2 {
+  color: #1d1d1f;
+  font-size: clamp(26px, 3vw, 36px);
+  letter-spacing: -0.04em;
+}
+
+.carousel-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.carousel-control {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  color: #1d1d1f;
+  background-color: #e8e8ed;
+  cursor: pointer;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.carousel-control:hover:not(:disabled) {
+  background-color: #d2d2d7;
+}
+
+.carousel-control:focus-visible,
+.moments-track:focus-visible {
+  outline: 3px solid #0071e3;
+  outline-offset: 3px;
+}
+
+.carousel-control svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.moments-track {
+  --carousel-card-width: clamp(280px, 40vw, 500px);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  padding: 24px max(12px, calc((100% - var(--carousel-card-width)) / 2));
+  scroll-padding-inline: max(12px, calc((100% - var(--carousel-card-width)) / 2));
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.moments-track::-webkit-scrollbar {
+  display: none;
+}
+
+.moment-card {
+  position: relative;
+  flex: 0 0 var(--carousel-card-width);
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 12px;
+  background-color: #e8e8ed;
+  isolation: isolate;
+  scroll-snap-align: center;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  transform: scale(0.84);
+  transition: transform 0.35s ease, box-shadow 0.2s ease;
+}
+
+.moment-card:hover {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+}
+
+.moment-card::after {
+  position: absolute;
+  z-index: -1;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.75), transparent 60%);
+  content: "";
+  inset: 0;
+}
+
+.moment-card.is-active {
+  transform: scale(1);
+}
+
+.moment-card img {
+  position: absolute;
+  z-index: -2;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  inset: 0;
+}
+
+.moment-copy {
+  position: absolute;
+  z-index: 1;
+  right: 18px;
+  bottom: 18px;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  gap: 6px;
+  max-width: calc(100% - 36px);
+  color: #fff;
+  text-align: right;
+}
+
+.moment-copy h3 {
+  margin: 0;
+  font-size: clamp(18px, 2.4vw, 30px);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+
+.moment-cta {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 6px;
+  margin-right: 12px;
+}
+
+.moment-device {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(16px, 2vw, 24px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7);
+  text-align: center;
+}
+
+.moment-link {
+  display: inline-flex;
+  min-height: 32px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 14px;
+  border: 1px solid #0071e3;
+  border-radius: 20px;
+  color: #fff;
+  background-color: #0071e3;
+  font-size: 14px;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.moment-link:hover {
+  background-color: #0077ed;
+}
+
+.moment-link:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .moment-card {
+    transition: none;
+  }
+}
+
+/* --- 11. Bahamas Satire Feature --- */
+.bahamas-feature {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 24px;
+  color: #424245;
+}
+
+.bahamas-disclaimer {
+  margin-bottom: 12px;
+  color: #6e6e73;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.bahamas-feature h2 {
+  margin-bottom: 16px;
+  color: #1d1d1f;
+  font-size: clamp(24px, 3vw, 34px);
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+}
+
+.bahamas-feature > p:not(.bahamas-disclaimer) {
+  margin-bottom: 14px;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+/* --- 11. Site Footer --- */
+.site-footer {
+  border-top: 1px solid #d2d2d7;
+  margin-top: 36px;
+  padding: 32px 24px 24px;
+  background-color: #f5f5f7;
+  color: #6e6e73;
+  font-size: 12px;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: minmax(160px, 0.8fr) minmax(0, 1.8fr);
+  gap: 32px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.footer-brand > a {
+  color: #1d1d1f;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.footer-brand p {
+  margin-top: 8px;
+}
+
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  min-width: 0;
+}
+
+.footer-column h2 {
+  margin-bottom: 2px;
+  color: #1d1d1f;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.footer-column a,
+.footer-bottom a {
+  color: #6e6e73;
+  text-decoration: none;
+}
+
+.footer-column a {
+  overflow-wrap: anywhere;
+}
+
+.footer-column a:hover,
+.footer-bottom a:hover {
+  color: #1d1d1f;
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #d2d2d7;
+}
+
+.support-page {
+  width: min(100% - 48px, 1040px);
+  margin: 0 auto;
+  padding: 64px 0 24px;
+}
+
+.support-intro {
+  padding-bottom: 48px;
+}
+
+.support-eyebrow {
+  margin-bottom: 12px;
+  color: #6e6e73;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.support-intro > h1 {
+  max-width: 760px;
+  margin-bottom: 12px;
+  font-size: clamp(40px, 7vw, 68px);
+  letter-spacing: -0.055em;
+  line-height: 1.04;
+}
+
+.support-intro > p:not(.support-eyebrow) {
+  max-width: 640px;
+  color: #6e6e73;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.support-contact {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr 0.9fr;
+  align-items: center;
+  gap: 24px;
+  margin-top: 32px;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  background-color: #fff;
+}
+
+.support-contact-copy h2,
+.support-section-heading h2 {
+  margin-bottom: 8px;
+  color: #1d1d1f;
+  font-size: 24px;
+  letter-spacing: -0.035em;
+}
+
+.support-contact-copy p,
+.support-section-heading > p:not(.support-eyebrow) {
+  color: #6e6e73;
+  line-height: 1.5;
+}
+
+.support-contact-link {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 6px;
+  color: #06c;
+  text-decoration: none;
+}
+
+.support-contact-link span {
+  color: #6e6e73;
+  font-size: 13px;
+}
+
+.support-contact-link strong {
+  overflow-wrap: anywhere;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.support-contact-link:hover strong {
+  text-decoration: underline;
+}
+
+.support-products,
+.support-tips {
+  padding: 40px 0 24px;
+}
+
+.support-section-heading {
+  max-width: 700px;
+  margin-bottom: 24px;
+}
+
+.support-product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.support-product-card,
+.support-tip-list article {
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  background-color: #fff;
+}
+
+.support-product-card {
+  position: relative;
+  z-index: 0;
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.support-product-card:hover,
+.support-product-card:focus-visible {
+  z-index: 1;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+  transform: translateY(-6px);
+}
+
+.support-product-card:focus-visible {
+  outline: 3px solid #0071e3;
+  outline-offset: 3px;
+}
+
+.support-product-year {
+  margin-bottom: 12px;
+  color: #6e6e73;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.support-product-card h3,
+.support-tip-list h3 {
+  margin-bottom: 10px;
+  color: #1d1d1f;
+  font-size: 20px;
+  letter-spacing: -0.025em;
+}
+
+.support-product-card > p:not(.support-product-year),
+.support-tip-list p {
+  margin-bottom: 16px;
+  color: #6e6e73;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.support-product-link {
+  color: #06c;
+  font-size: 14px;
+}
+
+.support-product-card:hover .support-product-link,
+.support-product-card:focus-visible .support-product-link {
+  text-decoration: underline;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .support-product-card,
+  .moment-card {
+    transition: none;
+  }
+}
+
+.support-tip-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.support-tip-list p {
+  margin-bottom: 0;
+}

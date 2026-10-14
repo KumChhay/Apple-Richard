@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>iPhone 13 Pro - Oh So Pro</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+  </head>
+  <body>
+    <nav class="navbar">
+      <button
+        class="mobile-menu-toggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-controls="nav-links"
+        aria-expanded="false"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <a href="index.html" class="navbar-brand" aria-label="Richard.LLC home">
+        <img src="images/Apple Logo.png" alt="" class="logo">
+      </a>
+
+      <ul id="nav-links" class="nav-links">
+        <!-- Home with Full-Width Mega-Menu Dropdown -->
+        <li class="dropdown">
+          <a href="index.html">Home</a>
+          <div class="dropdown-menu">
+            <div class="dropdown-content">
+              <div class="menu-column">
+                <span class="menu-category">Explore</span>
+                <a href="index.html">Home Overview</a>
+                <a href="Mac.html">Mac</a>
+                <a href="iPad.html">iPad</a>
+                <a href="iPhone.html">iPhone</a>
+              </div>
+              <div class="menu-column">
+                <span class="menu-category">Shop</span>
+                <a href="Mac.html">Shop Mac</a>
+                <a href="iPad.html">Shop iPad</a>
+                <a href="iPhone.html">Shop iPhone</a>
+              </div>
+              <div class="menu-column">
+                <span class="menu-category">Quick Links</span>
+                <a href="#">Find a Store</a>
+                <a href="#">Order Status</a>
+                <a href="support.html">Support</a>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <!-- Direct Navigation Links -->
+        <li><a href="Mac.html">Mac</a></li>
+        <li><a href="iPad.html">iPad</a></li>
+        <li><a href="iPhone.html">iPhone</a></li>
+      </ul>
+      <div class="search-item">
+        <input id="site-search" type="search" class="search-bar" placeholder="Search" aria-label="Search">
+      </div>
+      <button
+        class="search-toggle"
+        type="button"
+        aria-label="Open search"
+        aria-controls="site-search"
+        aria-expanded="false"
+      >
+        <svg viewBox="0 0 20 20" aria-hidden="true">
+          <circle cx="8.5" cy="8.5" r="5.5"></circle>
+          <path d="m13 13 4 4"></path>
+        </svg>
+      </button>
+    </nav>
+
+    <main>
+      <section class="hero" aria-label="iPhone 13 Pro">
+        <img
+          class="hero-image"
+          src="images/Oh So Pro.webp"
+          alt="iPhone 13 Pro in blue with the words oh. so. pro."
+        >
+        <div class="hero-actions">
+          <a class="hero-button hero-button-primary" href="iPhone.html">Buy</a>
+          <a class="hero-button hero-button-secondary" href="iPhone.html">Learn more</a>
+        </div>
+      </section>
+
+      <section class="product-grid" aria-label="Explore Mac and iPad">
+        <article class="product-panel mac-panel">
+          <a class="product-panel-link" href="Mac.html" aria-label="Explore MacBook Pro"></a>
+          <img
+            class="product-image"
+            src="images/C on MacBook.jpeg"
+            alt="MacBook with a creative design on its display"
+          >
+          <div class="product-copy">
+            <h2>MacBook Pro</h2>
+            <p class="product-tagline">Power through. Stand out.</p>
+            <div class="product-actions">
+              <a class="hero-button hero-button-primary" href="Mac.html">Buy</a>
+              <a class="hero-button hero-button-secondary" href="Mac.html">Learn more</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-panel ipad-panel">
+          <a class="product-panel-link" href="iPad.html" aria-label="Explore iPad Pro"></a>
+          <img
+            class="product-image"
+            src="images/ipad pro m1.jpg"
+            alt="iPad Pro with a vivid, colorful display"
+          >
+          <div class="product-copy">
+            <h2>iPad Pro</h2>
+            <p class="product-tagline">Make room for wow.</p>
+            <div class="product-actions">
+              <a class="hero-button hero-button-primary" href="iPad.html">Buy</a>
+              <a class="hero-button hero-button-secondary" href="iPad.html">Learn more</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-panel air-panel">
+          <a class="product-panel-link" href="Mac.html" aria-label="Explore MacBook Air"></a>
+          <div class="product-copy">
+            <h2>MacBook Air</h2>
+            <p class="product-tagline">Light on you. Big on everything.</p>
+            <div class="product-actions">
+              <a class="hero-button hero-button-primary" href="Mac.html">Buy</a>
+              <a class="hero-button hero-button-secondary" href="Mac.html">Learn more</a>
+            </div>
+          </div>
+          <img
+            class="product-image"
+            src="images/MacBook Air M2.jpg"
+            alt="MacBook Air with a blue abstract display"
+          >
+        </article>
+      </section>
+
+      <section class="moments-carousel" aria-labelledby="moments-heading">
+        <div class="moments-header">
+          <div>
+            <p class="moments-eyebrow">A LITTLE MORE</p>
+            <h2 id="moments-heading">Moments with Richard</h2>
+          </div>
+          <div class="carousel-controls">
+            <button class="carousel-control carousel-previous" type="button" aria-label="Previous photos">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m15 18-6-6 6-6"></path>
+              </svg>
+            </button>
+            <button class="carousel-control carousel-next" type="button" aria-label="Next photos">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m9 18 6-6-6-6"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="moments-track" tabindex="0" aria-label="Photo carousel">
+          <figure class="moment-card">
+            <img src="Richard%20images/richard-photo-1.jpg" alt="Richard playing guitar at home">
+            <div class="moment-copy">
+              <h3>Beyond Expectation</h3>
+              <div class="moment-cta">
+                <p class="moment-device">iPad</p>
+                <a class="moment-link" href="iPad.html">Learn more</a>
+              </div>
+            </div>
+          </figure>
+          <figure class="moment-card">
+            <img src="Richard%20images/758A1CEE-E4AF-4F1E-B6A7-43D12E120486.PNG" alt="Richard posing for a selfie with another person">
+            <div class="moment-copy">
+              <h3>Impecable Selfies</h3>
+              <div class="moment-cta">
+                <p class="moment-device">iPhone</p>
+                <a class="moment-link" href="iPhone.html">Learn more</a>
+              </div>
+            </div>
+          </figure>
+          <figure class="moment-card">
+            <img src="Richard%20images/richard-photo-3.jpg" alt="Richard enjoying a drink at a cafe">
+            <div class="moment-copy">
+              <h3>Power, All Day</h3>
+              <div class="moment-cta">
+                <p class="moment-device">Mac</p>
+                <a class="moment-link" href="Mac.html">Learn more</a>
+              </div>
+            </div>
+          </figure>
+          <figure class="moment-card">
+            <img src="Richard%20images/richard-photo-4.jpg" alt="Richard sitting with others in a cafe">
+            <div class="moment-copy">
+              <h3>Power, All Day</h3>
+              <div class="moment-cta">
+                <p class="moment-device">Mac</p>
+                <a class="moment-link" href="Mac.html">Learn more</a>
+              </div>
+            </div>
+          </figure>
+        </div>
+      </section>
+    </main>
+    <section class="bahamas-feature" aria-labelledby="bahamas-heading">
+      <h2 id="bahamas-heading">The Bahamas Getaway &amp; The Ultimate Audio Upgrade</h2>
+      <p>Picture this: You are lounging on a pristine, sun-drenched beach in the Bahamas. The turquoise waves lap gently against the powdery white sand, a warm tropical breeze carries the scent of salt and hibiscus, and you realize something profound—paradise is entirely incomplete without a world-class soundtrack.</p>
+      <p>But as you pull out your device to queue up some island beats, reality hits: subscription fees are draining your vacation funds faster than a beachside cocktail. That is when inspiration strikes under a swaying palm tree. Why let standard corporate pricing gatekeep your acoustic paradise when you can unlock infinite high-fidelity sound through our exclusive, deeply discounted knockoff Apple Music subscription gift cards?</p>
+      <p>Think of it as your digital passport to crystal-clear audio luxury, routed straight to your speakers without the premium baggage fee. Grab yours today, fuel your mental getaway, and stream your way to ultimate savings!</p>
+    </section>
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <a href="index.html">Richard.LLC</a>
+          <p>Explore more of what you love.</p>
+        </div>
+        <nav class="footer-links" aria-label="Footer navigation">
+          <div class="footer-column">
+            <h2>Shop</h2>
+            <a href="Mac.html">Mac</a>
+            <a href="iPad.html">iPad</a>
+            <a href="iPhone.html">iPhone</a>
+          </div>
+          <div class="footer-column">
+            <h2>Explore</h2>
+            <a href="index.html">Home</a>
+            <a href="support.html">Support</a>
+          </div>
+          <div class="footer-column">
+            <h2>Contact</h2>
+            <a href="tel:+85599968968">+855 99 968 968</a>
+            <a href="mailto:richard.hay@ewiscambodia.edu.kh">richard.hay@ewiscambodia.edu.kh</a>
+          </div>
+        </nav>
+        <div class="footer-bottom">
+          <span>Copyright © 2026 Richard.LLC. All rights reserved.</span>
+          <a href="support.html">Contact Support</a>
+        </div>
+      </div>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Website</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+  </head>
+  <body>
+    <nav class="navbar">
+      <button
+        class="mobile-menu-toggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-controls="nav-links"
+        aria-expanded="false"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <a href="index.html" class="navbar-brand" aria-label="Richard.LLC home">
+        <img src="images/Apple Logo.png" alt="" class="logo">
+      </a>
+      <ul id="nav-links" class="nav-links">
+        <!-- Home with Full-Width Mega-Menu Dropdown -->
+        <li class="dropdown">
+          <a href="index.html">Home</a>
+          <div class="dropdown-menu">
+            <div class="dropdown-content">
+              <div class="menu-column">
+                <span class="menu-category">Explore</span>
+                <a href="index.html">Home Overview</a>
+                <a href="Mac.html">Mac</a>
+                <a href="iPad.html">iPad</a>
+                <a href="iPhone.html">iPhone</a>
+              </div>
+              <div class="menu-column">
+                <span class="menu-category">Shop</span>
+                <a href="Mac.html">Shop Mac</a>
+                <a href="iPad.html">Shop iPad</a>
+                <a href="iPhone.html">Shop iPhone</a>
+              </div>
+              <div class="menu-column">
+                <span class="menu-category">Quick Links</span>
+                <a href="#">Find a Store</a>
+                <a href="#">Order Status</a>
+                <a href="support.html">Support</a>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <!-- Direct Navigation Links -->
+        <li><a href="Mac.html">Mac</a></li>
+        <li><a href="iPad.html">iPad</a></li>
+        <li><a href="iPhone.html">iPhone</a></li>
+
+      </ul>
+      <div class="search-item">
+        <input id="site-search" type="search" class="search-bar" placeholder="Search" aria-label="Search">
+      </div>
+      <button
+        class="search-toggle"
+        type="button"
+        aria-label="Open search"
+        aria-controls="site-search"
+        aria-expanded="false"
+      >
+        <svg viewBox="0 0 20 20" aria-hidden="true">
+          <circle cx="8.5" cy="8.5" r="5.5"></circle>
+          <path d="m13 13 4 4"></path>
+        </svg>
+      </button>
+    </nav>
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <a href="index.html">Richard.LLC</a>
+          <p>Explore more of what you love.</p>
+        </div>
+        <nav class="footer-links" aria-label="Footer navigation">
+          <div class="footer-column">
+            <h2>Shop</h2>
+            <a href="Mac.html">Mac</a>
+            <a href="iPad.html">iPad</a>
+            <a href="iPhone.html">iPhone</a>
+          </div>
+          <div class="footer-column">
+            <h2>Explore</h2>
+            <a href="index.html">Home</a>
+            <a href="support.html">Support</a>
+          </div>
+          <div class="footer-column">
+            <h2>Contact</h2>
+            <a href="tel:+85599968968">+855 99 968 968</a>
+            <a href="mailto:richard.hay@ewiscambodia.edu.kh">richard.hay@ewiscambodia.edu.kh</a>
+          </div>
+        </nav>
+        <div class="footer-bottom">
+          <span>Copyright © 2026 Richard.LLC. All rights reserved.</span>
+          <a href="support.html">Contact Support</a>
+        </div>
+      </div>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
