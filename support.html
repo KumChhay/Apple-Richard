@@ -73,6 +73,12 @@
           <path d="m13 13 4 4"></path>
         </svg>
       </button>
+      <a class="bag-toggle" href="Mac.html#shopping-bag" aria-label="Shopping bag">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M5.5 8h13l1 12h-15l1-12Z"></path>
+          <path d="M9 9V6a3 3 0 0 1 6 0v3"></path>
+        </svg>
+      </a>
     </nav>
     <main class="support-page">
       <section class="support-intro" aria-labelledby="support-heading">
@@ -99,33 +105,136 @@
         <div class="support-section-heading">
           <p class="support-eyebrow">PRODUCT GUIDE</p>
           <h2 id="products-heading">Get to know your device.</h2>
-          <p>Highlights from the Apple product generations represented on our site. Features and configurations vary by model.</p>
+          <p>Highlights from every product in our lineup. Prices shown are starting prices, and features vary by model.</p>
         </div>
-        <div class="support-product-grid">
-          <a class="support-product-card" href="iPhone.html">
-            <p class="support-product-year">2021</p>
-            <h3>iPhone 13 Pro</h3>
-            <p>6.1-inch Super Retina XDR display with ProMotion, A15 Bionic, and a Pro camera system with macro photography and Cinematic mode.</p>
-            <span class="support-product-link">Explore iPhone <span aria-hidden="true">→</span></span>
-          </a>
-          <a class="support-product-card" href="Mac.html">
-            <p class="support-product-year">2021</p>
-            <h3>MacBook Pro</h3>
-            <p>The 14- and 16-inch models introduced M1 Pro and M1 Max options, Liquid Retina XDR displays, and ports including HDMI and MagSafe 3.</p>
-            <span class="support-product-link">Explore Mac <span aria-hidden="true">→</span></span>
-          </a>
-          <a class="support-product-card" href="iPad.html">
-            <p class="support-product-year">2021</p>
-            <h3>iPad Pro</h3>
-            <p>Powered by M1, with 11-inch Liquid Retina and 12.9-inch Liquid Retina XDR display options, plus Thunderbolt / USB 4.</p>
-            <span class="support-product-link">Explore iPad <span aria-hidden="true">→</span></span>
-          </a>
-          <a class="support-product-card" href="Mac.html">
-            <p class="support-product-year">2022</p>
-            <h3>MacBook Air</h3>
-            <p>The redesigned 13.6-inch MacBook Air brought the M2 chip, a Liquid Retina display, and MagSafe 3 charging.</p>
-            <span class="support-product-link">Explore Mac <span aria-hidden="true">→</span></span>
-          </a>
+        <nav class="support-category-links" aria-label="Product categories">
+          <a href="#support-mac">Mac</a>
+          <a href="#support-ipad">iPad</a>
+          <a href="#support-iphone">iPhone</a>
+        </nav>
+
+        <div class="support-category" id="support-mac">
+          <h3 class="support-category-heading">Mac</h3>
+          <div class="support-product-grid">
+            <a class="support-product-card support-product-card-featured reflective-surface" id="support-richards-special-mac" href="Mac.html#mac-special-heading">
+              <div class="support-product-image"><img src="images/C%20on%20MacBook.jpeg" alt="Richard's Special Mac, a hand-painted MacBook"></div>
+              <div class="support-product-featured-copy">
+                <p class="support-product-eyebrow">16-inch · Only at Richard.LLC</p>
+                <h4>Richard's Special Mac</h4>
+                <p>R1 Pro or R1 Max chip, 24GB to 256GB of memory, 512GB to 8TB of storage, and a Tandem OLED Ultra Retina XDR display. Everything else matches the top MacBook Pro, including the 140W power adapter.</p>
+                <p class="support-product-price">From $3,999</p>
+                <span class="support-product-link">Shop Richard's Special Mac <span aria-hidden="true">→</span></span>
+              </div>
+            </a>
+            <a class="support-product-card" id="support-macbook-air" href="Mac.html#macbook-air">
+              <div class="support-product-image"><img src="images/nav_mba.jpg" alt="MacBook Air laptops with blue and gold displays"></div>
+              <p class="support-product-eyebrow">13-inch and 15-inch</p>
+              <h4>MacBook Air</h4>
+              <p>Thin, fast, and built for all-day battery life. A great all-rounder for school, work, and creative projects.</p>
+              <p class="support-product-price">From $1,299</p>
+              <span class="support-product-link">Shop MacBook Air <span aria-hidden="true">→</span></span>
+            </a>
+            <a class="support-product-card" id="support-macbook-pro" href="Mac.html#macbook-pro">
+              <div class="support-product-image"><img src="images/nav_mbp.jpg" alt="MacBook Pro laptops with a dark abstract display"></div>
+              <p class="support-product-eyebrow">14-inch and 16-inch</p>
+              <h4>MacBook Pro</h4>
+              <p>Pro performance and a brilliant display for demanding creative and professional work.</p>
+              <p class="support-product-price">From $1,999</p>
+              <span class="support-product-link">Shop MacBook Pro <span aria-hidden="true">→</span></span>
+            </a>
+            <a class="support-product-card" id="support-macbook-neo" href="Mac.html#macbook-neo">
+              <div class="support-product-image"><img src="why mac images/nav_mbn.jpg" alt="MacBook Neo laptops in several colors"></div>
+              <p class="support-product-eyebrow">Four colors</p>
+              <h4>MacBook Neo</h4>
+              <p>A colorful, capable Mac for everyday tasks, school, and getting started.</p>
+              <p class="support-product-price">From $699</p>
+              <span class="support-product-link">Shop MacBook Neo <span aria-hidden="true">→</span></span>
+            </a>
+          </div>
+        </div>
+
+        <div class="support-category" id="support-ipad">
+          <h3 class="support-category-heading">iPad</h3>
+          <div class="support-product-grid">
+            <a class="support-product-card" id="support-ipad-base" href="iPad.html#ipad">
+              <div class="support-product-image"><img src="Ipad images/nav_ipad.png" alt="iPad with a colorful display"></div>
+              <p class="support-product-eyebrow">11-inch</p>
+              <h4>iPad</h4>
+              <p>Colorful and capable for everyday tasks, school, and entertainment.</p>
+              <p class="support-product-price">From $349</p>
+              <span class="support-product-link">Shop iPad <span aria-hidden="true">→</span></span>
+            </a>
+            <a class="support-product-card" id="support-ipad-air" href="iPad.html#ipad-air">
+              <div class="support-product-image"><img src="Ipad images/nav_ipad_air.png" alt="iPad Air in two sizes"></div>
+              <p class="support-product-eyebrow">11-inch and 13-inch</p>
+              <h4>iPad Air</h4>
+              <p>Serious power in a thin, light design. Pairs with Apple Pencil and Magic Keyboard for school, work, and creativity.</p>
+              <p class="support-product-price">From $599</p>
+              <span class="support-product-link">Shop iPad Air <span aria-hidden="true">→</span></span>
+            </a>
+            <a class="support-product-card" id="support-ipad-mini" href="iPad.html#ipad-mini">
+              <div class="support-product-image"><img src="Ipad images/nav_ipad_mini.png" alt="iPad mini held in one hand"></div>
+              <p class="support-product-eyebrow">8.3-inch</p>
+              <h4>iPad mini</h4>
+              <p>The full iPad experience in a size that fits in one hand and goes anywhere.</p>
+              <p class="support-product-price">From $499</p>
+              <span class="support-product-link">Shop iPad mini <span aria-hidden="true">→</span></span>
+            </a>
+            <a class="support-product-card" id="support-ipad-pro" href="iPad.html#ipad-pro">
+              <div class="support-product-image"><img src="Ipad images/nav_ipad_pro.png" alt="iPad Pro models with an edge-to-edge display"></div>
+              <p class="support-product-eyebrow">11-inch and 13-inch</p>
+              <h4>iPad Pro</h4>
+              <p>The ultimate iPad experience, with the power and display for demanding creative and professional work.</p>
+              <p class="support-product-price">From $999</p>
+              <span class="support-product-link">Shop iPad Pro <span aria-hidden="true">→</span></span>
+            </a>
+          </div>
+        </div>
+
+        <div class="support-category" id="support-iphone">
+          <h3 class="support-category-heading">iPhone</h3>
+          <div class="support-product-grid">
+            <a class="support-product-card" id="support-iphone-duo" href="iPhone.html#iphone-duo">
+              <div class="support-product-image"><img src="iPhone images/nav_iphone_duo.jpg" alt="iPhone Duo unfolded beside its back"></div>
+              <p class="support-product-eyebrow">Foldable</p>
+              <h4>iPhone Duo</h4>
+              <p>The largest iPhone display ever in a thin, foldable design, with a 48MP Dual Fusion camera system and the A20 Pro chip.</p>
+              <p class="support-product-price">From $1,999</p>
+              <span class="support-product-link">Shop iPhone Duo <span aria-hidden="true">→</span></span>
+            </a>
+            <a class="support-product-card" id="support-iphone-18-pro" href="iPhone.html#iphone-18-pro">
+              <div class="support-product-image"><img src="iPhone images/nav_iphone_18_pro.jpg" alt="iPhone 18 Pro in burgundy"></div>
+              <p class="support-product-eyebrow">6.3-inch and 6.9-inch</p>
+              <h4>iPhone 18 Pro</h4>
+              <p>A 48MP Main camera with variable aperture, a big leap in battery life, a next-generation vapor chamber, and the A20 Pro chip.</p>
+              <p class="support-product-price">From $1,099</p>
+              <span class="support-product-link">Shop iPhone 18 Pro <span aria-hidden="true">→</span></span>
+            </a>
+            <a class="support-product-card" id="support-iphone-air" href="iPhone.html#iphone-air">
+              <div class="support-product-image"><img src="iPhone images/nav_iphone_air.jpg" alt="iPhone Air, front and back"></div>
+              <p class="support-product-eyebrow">6.5-inch</p>
+              <h4>iPhone Air</h4>
+              <p>Incredibly light and thin, with the A19 Pro chip, the Center Stage front camera, and Ceramic Shield front and back.</p>
+              <p class="support-product-price">From $999</p>
+              <span class="support-product-link">Shop iPhone Air <span aria-hidden="true">→</span></span>
+            </a>
+            <a class="support-product-card" id="support-iphone-17" href="iPhone.html#iphone-17">
+              <div class="support-product-image"><img src="iPhone images/nav_iphone_17.jpg" alt="iPhone 17 in lavender"></div>
+              <p class="support-product-eyebrow">6.3-inch</p>
+              <h4>iPhone 17</h4>
+              <p>A 6.3-inch ProMotion display, the Center Stage front camera, the A19 chip, and five gorgeous colors.</p>
+              <p class="support-product-price">From $799</p>
+              <span class="support-product-link">Shop iPhone 17 <span aria-hidden="true">→</span></span>
+            </a>
+            <a class="support-product-card" id="support-iphone-17e" href="iPhone.html#iphone-17e">
+              <div class="support-product-image"><img src="iPhone images/nav_iphone_17e.jpg" alt="iPhone 17e in soft pink"></div>
+              <p class="support-product-eyebrow">6.1-inch</p>
+              <h4>iPhone 17e</h4>
+              <p>Ceramic Shield 2, long battery life, a 48MP camera, 256GB of storage, and the A19 chip.</p>
+              <p class="support-product-price">From $599</p>
+              <span class="support-product-link">Shop iPhone 17e <span aria-hidden="true">→</span></span>
+            </a>
+          </div>
         </div>
       </section>
 

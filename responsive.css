@@ -4,7 +4,330 @@
   }
 }
 
+@media (min-width: 761px) and (max-width: 900px) {
+  .mac-product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 760px) {
+  .mac-announcement {
+    padding: 14px 20px;
+    font-size: 14px;
+  }
+
+  .mac-product-grid {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    padding: 16px 16px 20px;
+    scroll-padding-inline: 16px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .mac-product-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mac-product-grid .mac-product-card {
+    flex: 0 0 min(82vw, 360px);
+    scroll-snap-align: start;
+  }
+
+  .mac-product-carousel {
+    width: 100%;
+    margin-bottom: 64px;
+  }
+
+  .mac-product-carousel .mac-product-controls {
+    display: flex;
+    width: calc(100% - 32px);
+    margin-bottom: 12px;
+  }
+
+  .iphone-banner-image {
+    height: auto;
+  }
+
+  .mac-special {
+    grid-template-columns: 1fr;
+  }
+
+  .mac-special-visual img {
+    height: auto;
+    max-height: 520px;
+  }
+
+  .mac-special-copy {
+    padding: 8px 24px 32px;
+  }
+
+  .mac-buy-product-visual.is-full-bleed {
+    max-height: none;
+  }
+
+  .mac-buy-product-visual.is-full-bleed img {
+    max-height: 320px;
+  }
+
+  .iphone-banner-title {
+    font-size: clamp(44px, 14vw, 72px);
+  }
+
+  .ipad-product-carousel {
+    margin-bottom: 64px;
+  }
+
+  .ipad-product-track {
+    --mac-benefit-card-width: min(82vw, 360px);
+    gap: 14px;
+    padding: 16px 16px 20px;
+    scroll-padding-inline: 16px;
+  }
+
+  .mac-product-image-wrap {
+    min-height: clamp(150px, 48vw, 210px);
+    padding: 18px 20px 0;
+  }
+
+  .mac-product-image {
+    height: auto;
+  }
+
+  .mac-product-finishes {
+    margin: 20px 0 30px;
+  }
+
+  .mac-product-details {
+    padding: 0 20px 36px;
+  }
+
+  .mac-product-tagline {
+    margin-bottom: 28px;
+  }
+
+  .mac-product-pricing {
+    margin-bottom: 28px;
+  }
+
+  .ipad-essentials {
+    margin-bottom: 48px;
+  }
+
+  .ipad-essentials .mac-page-heading {
+    padding: 28px 16px 18px;
+  }
+
+  .ipad-essentials .mac-page-heading h1 {
+    font-size: 32px;
+  }
+
+  .ipad-essentials-grid {
+    grid-template-columns: 1fr;
+    width: calc(100% - 32px);
+    gap: 16px;
+  }
+
+  .ipad-essential-card {
+    height: 440px;
+  }
+
+  .ipad-essential-copy {
+    flex-basis: 150px;
+    padding: 26px 18px 12px;
+  }
+
+  .ipad-essential-keyboard .ipad-essential-copy {
+    flex-basis: 150px;
+  }
+
+  .ipad-essential-copy h2 {
+    font-size: 25px;
+  }
+
+  .mac-benefits-controls {
+    width: calc(100% - 32px);
+  }
+
+  .mac-benefits-track {
+    --mac-benefit-card-width: min(82vw, 360px);
+    gap: 14px;
+    padding: 16px 16px 20px;
+    scroll-padding-inline: 16px;
+  }
+
+  .mac-benefit-copy {
+    padding: 20px 20px 10px;
+  }
+
+  .mac-benefit-copy h2 {
+    font-size: 22px;
+  }
+
+  .mac-benefit-copy p {
+    min-height: 66px;
+    font-size: 15px;
+  }
+
+  .mac-benefit-card img {
+    height: 220px;
+  }
+
+  .mac-chooser {
+    width: calc(100% - 32px);
+  }
+
+  .mac-chooser-heading {
+    margin-bottom: 18px;
+    font-size: 32px;
+  }
+
+  .mac-chooser-card {
+    grid-template-columns: 1fr;
+  }
+
+  .mac-chooser-copy {
+    gap: 20px;
+    padding: 32px 24px 24px;
+  }
+
+  .mac-chooser-copy p {
+    font-size: 24px;
+  }
+
+  .mac-chooser-card img {
+    min-height: 0;
+    height: auto;
+  }
+
+  .mac-switch {
+    width: calc(100% - 32px);
+    margin-bottom: 48px;
+  }
+
+  .mac-switch-heading {
+    margin-bottom: 18px;
+    font-size: 32px;
+  }
+
+  .mac-switch-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .mac-switch-card {
+    min-height: 0;
+  }
+
+  .mac-switch-copy {
+    min-height: 0;
+    padding: 34px 22px 0;
+  }
+
+  .mac-switch-copy h3 {
+    font-size: 25px;
+  }
+
+  .mac-chooser-form {
+    padding: 24px;
+  }
+
+  .mac-chooser-result img {
+    max-height: 150px;
+  }
+
+  .mac-buy-dialog {
+    max-height: calc(100% - 24px);
+  }
+
+  .mac-buy-shell {
+    padding: 16px;
+  }
+
+  .mac-buy-footer {
+    margin: 0 -16px -16px;
+    padding: 14px 16px 18px;
+  }
+
+  .mac-buy-footer .mac-buy-submit {
+    min-height: 44px;
+    padding: 0 22px;
+    font-size: 16px;
+  }
+
+  .mac-buy-content {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .mac-buy-product-visual {
+    position: static;
+    min-height: 190px;
+    max-height: 230px;
+    padding: 12px;
+  }
+
+
+  .mac-buy-product-visual img {
+    max-height: 205px;
+  }
+
+
+
+
+  .mac-buy-form {
+    gap: 14px;
+  }
+
+  .mac-buy-form h2,
+  .mac-buy-confirmation h2 {
+    font-size: 28px;
+  }
+
+  .mac-buy-confirmation {
+    min-height: 280px;
+    padding: 24px 8px;
+  }
+
+  .mac-bag-shell {
+    padding: 22px 16px;
+  }
+
+  .mac-bag-header h2 {
+    font-size: 26px;
+  }
+
+  .mac-bag-item {
+    grid-template-columns: 76px minmax(0, 1fr) auto;
+    gap: 10px;
+    padding: 16px 0;
+  }
+
+  .mac-bag-item::before,
+  .mac-bag-item-image {
+    width: 76px;
+    height: 76px;
+  }
+
+  .mac-bag-item-image {
+    padding: 6px;
+  }
+
+  .mac-bag-item-details h3 {
+    font-size: 15px;
+  }
+
+  .mac-bag-item-details p {
+    font-size: 12px;
+  }
+
+  .mac-bag-item-price {
+    font-size: 13px;
+  }
+
   .navbar {
     justify-content: center;
   }
@@ -17,7 +340,8 @@
   }
 
   .mobile-menu-toggle,
-  .search-toggle {
+  .search-toggle,
+  .bag-toggle {
     position: absolute;
     top: 0;
     z-index: 2;
@@ -63,9 +387,13 @@
     right: 4px;
   }
 
+  .bag-toggle {
+    right: 48px;
+  }
+
   .search-item {
     position: absolute;
-    right: 52px;
+    right: 96px;
     left: 56px;
     z-index: 2;
     margin-left: 0;
@@ -231,8 +559,38 @@
   }
 
   .support-product-grid,
+  #support-ipad .support-product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .support-tip-list {
     grid-template-columns: 1fr;
+  }
+
+  .support-category-heading {
+    font-size: 26px;
+  }
+
+  .support-product-image {
+    height: 120px;
+  }
+
+  .support-product-card.support-product-card-featured {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 0 20px;
+  }
+
+  .support-product-card-featured .support-product-image {
+    height: 260px;
+  }
+
+  .support-product-featured-copy {
+    padding: 8px 0 24px;
+  }
+
+  .support-product-card.support-product-card-featured h4 {
+    font-size: 26px;
   }
 
   .support-product-card,

@@ -12,6 +12,1402 @@ body {
 }
 
 /* --- 2. Apple Global Nav Bar --- */
+.mac-announcement {
+  padding: 18px 24px;
+  background-color: #f5f5f7;
+  color: #1d1d1f;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.mac-page-heading {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 36px 24px;
+}
+
+.mac-page-heading h1 {
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.mac-product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 2vw, 24px);
+  width: min(1120px, calc(100% - clamp(48px, 10vw, 160px)));
+  margin: 0 auto 64px;
+}
+
+.mac-product-carousel {
+  width: min(1120px, calc(100% - clamp(48px, 10vw, 160px)));
+  margin: 0 auto 64px;
+}
+
+.mac-product-carousel .mac-product-controls {
+  display: none;
+}
+
+.ipad-product-carousel {
+  width: 100%;
+  margin: 0 0 64px;
+}
+
+.ipad-carousel-previous,
+.ipad-carousel-next,
+.mac-product-previous,
+.mac-product-next {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  color: #1d1d1f;
+  background-color: #e8e8ed;
+  cursor: pointer;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.ipad-carousel-previous:hover:not(:disabled),
+.ipad-carousel-next:hover:not(:disabled),
+.mac-product-previous:hover:not(:disabled),
+.mac-product-next:hover:not(:disabled) {
+  background-color: #d2d2d7;
+}
+
+.ipad-carousel-previous:disabled,
+.ipad-carousel-next:disabled,
+.mac-product-previous:disabled,
+.mac-product-next:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.ipad-carousel-previous:focus-visible,
+.ipad-carousel-next:focus-visible,
+.ipad-product-track:focus-visible,
+.mac-product-previous:focus-visible,
+.mac-product-next:focus-visible,
+.mac-product-grid:focus-visible {
+  outline: 3px solid #0071e3;
+  outline-offset: 3px;
+}
+
+.ipad-carousel-previous svg,
+.ipad-carousel-next svg,
+.mac-product-previous svg,
+.mac-product-next svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.ipad-product-carousel .mac-benefits-controls {
+  width: min(1200px, calc(100% - 48px));
+}
+
+.ipad-product-track {
+  --mac-benefit-card-width: clamp(280px, 32vw, 380px);
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  padding: 20px max(24px, calc((100% - 1200px) / 2));
+  scroll-padding-inline: max(24px, calc((100% - 1200px) / 2));
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.ipad-product-track::-webkit-scrollbar {
+  display: none;
+}
+
+.ipad-product-track .mac-product-card {
+  flex: 0 0 var(--mac-benefit-card-width);
+  scroll-snap-align: start;
+}
+
+.mac-product-carousel .mac-product-grid {
+  width: 100%;
+  margin: 0;
+}
+
+.mac-product-card {
+  overflow: hidden;
+  border-radius: 24px;
+  background-color: #fff;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.mac-product-card:hover,
+.mac-product-card:focus-within {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
+  transform: translateY(-4px);
+}
+
+.mac-product-image-wrap {
+  display: grid;
+  min-height: clamp(150px, 18vw, 205px);
+  place-items: center;
+  padding: clamp(10px, 1.5vw, 18px) clamp(16px, 2.5vw, 28px) 0;
+}
+
+.mac-product-image {
+  display: block;
+  width: min(100%, 250px);
+  height: auto;
+  object-fit: contain;
+}
+
+.mac-product-finishes {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin: clamp(12px, 1.4vw, 16px) 0 clamp(18px, 2vw, 24px);
+  list-style: none;
+}
+
+.mac-product-finishes li {
+  width: 9px;
+  height: 9px;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  border-radius: 50%;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.18);
+}
+
+.finish-sky-blue {
+  background-color: #c4d9e0;
+}
+
+.finish-silver {
+  background-color: #e5e5e5;
+}
+
+.finish-starlight {
+  background-color: #f2e7d4;
+}
+
+.finish-midnight {
+  background-color: #30343d;
+}
+
+.finish-space-black {
+  background-color: #25272c;
+}
+
+.finish-neo-purple {
+  background-color: #a879e8;
+}
+
+.finish-neo-pink {
+  background-color: #f2c3c9;
+}
+
+.finish-neo-yellow {
+  background-color: #e9df76;
+}
+
+.finish-neo-blue {
+  background-color: #4b5a8a;
+}
+
+.finish-ipad-blue {
+  background-color: #9bb7d4;
+}
+
+.finish-ipad-pink {
+  background-color: #edc6c5;
+}
+
+.finish-ipad-yellow {
+  background-color: #efe6a2;
+}
+
+.finish-space-gray {
+  background-color: #77777b;
+}
+
+.finish-night-sky {
+  background-color: #2b2f3a;
+}
+
+.finish-star-white {
+  background-color: #efede6;
+}
+
+.finish-burgundy {
+  background-color: #6b2a37;
+}
+
+.finish-glacier {
+  background-color: #c9dbe6;
+}
+
+.finish-light-gold {
+  background-color: #eadcc0;
+}
+
+.finish-cloud-white {
+  background-color: #f4f4f0;
+}
+
+.finish-lavender {
+  background-color: #d8c8ea;
+}
+
+.finish-mist-blue {
+  background-color: #a9bccd;
+}
+
+.finish-sage {
+  background-color: #b4bea2;
+}
+
+.finish-soft-pink {
+  background-color: #f2d4d6;
+}
+
+.finish-white {
+  background-color: #f5f5f5;
+}
+
+.finish-black {
+  background-color: #2f3033;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.mac-product-details {
+  padding: 0 clamp(16px, 2vw, 22px) clamp(24px, 3vw, 36px);
+}
+
+.mac-product-details h2 {
+  margin-bottom: 8px;
+  font-size: clamp(20px, 2vw, 28px);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+}
+
+.mac-product-tagline {
+  margin-bottom: clamp(18px, 2.2vw, 28px);
+  font-size: clamp(15px, 1.25vw, 17px);
+  font-weight: 500;
+}
+
+.mac-product-pricing {
+  min-height: clamp(42px, 4vw, 56px);
+  margin-bottom: clamp(20px, 2.5vw, 30px);
+  font-size: clamp(13px, 1.1vw, 15px);
+  line-height: 1.55;
+}
+
+.mac-product-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(10px, 1.5vw, 18px);
+}
+
+.mac-product-actions .hero-button-primary {
+  min-height: clamp(36px, 3vw, 42px);
+  padding: 0 clamp(16px, 2vw, 22px);
+  font-size: clamp(14px, 1.15vw, 16px);
+}
+
+.mac-product-actions .hero-button-secondary {
+  border-color: transparent;
+  background: transparent;
+  font-size: clamp(14px, 1.15vw, 16px);
+}
+
+.mac-product-card:focus-within {
+  outline: 3px solid #0071e3;
+  outline-offset: 3px;
+}
+
+.ipad-essentials {
+  margin-bottom: 64px;
+}
+
+.ipad-essentials .mac-page-heading {
+  padding-bottom: 24px;
+}
+
+.ipad-essentials-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  width: min(1080px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.ipad-essential-card {
+  display: flex;
+  height: 496px;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 24px;
+  background-color: #fff;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.ipad-essential-card:hover,
+.ipad-essential-card:focus-within {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
+  transform: translateY(-4px);
+}
+
+.ipad-essential-copy {
+  display: flex;
+  flex: 0 0 166px;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 20px 16px;
+}
+
+.ipad-essential-copy h2 {
+  margin-bottom: 8px;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+}
+
+.ipad-essential-copy p {
+  margin-bottom: 12px;
+  color: #424245;
+  font-size: 16px;
+}
+
+.ipad-essential-copy .hero-button {
+  min-height: 32px;
+  padding: 0 14px;
+  border-color: transparent;
+  color: #06c;
+  background: transparent;
+  font-size: 14px;
+}
+
+.ipad-essential-copy .hero-button:hover {
+  color: #fff;
+  background-color: #0071e3;
+}
+
+.ipad-essential-card > img {
+  display: block;
+  width: 100%;
+  height: 0;
+  min-height: 0;
+  flex: 1 1 0;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.ipad-essential-keyboard > img {
+  flex: 1 1 0;
+  object-fit: contain;
+  object-position: center top;
+}
+
+.ipad-essential-keyboard .ipad-essential-copy {
+  flex-basis: 166px;
+}
+
+.mac-benefits-carousel {
+  margin: 0 0 64px;
+}
+
+.mac-benefits-controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  width: min(1200px, calc(100% - 48px));
+  margin: 0 auto 12px;
+}
+
+.mac-benefit-previous,
+.mac-benefit-next {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  color: #1d1d1f;
+  background-color: #e8e8ed;
+  cursor: pointer;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.mac-benefit-previous:hover:not(:disabled),
+.mac-benefit-next:hover:not(:disabled) {
+  background-color: #d2d2d7;
+}
+
+.mac-benefit-previous:disabled,
+.mac-benefit-next:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.mac-benefit-previous:focus-visible,
+.mac-benefit-next:focus-visible,
+.mac-benefits-track:focus-visible {
+  outline: 3px solid #0071e3;
+  outline-offset: 3px;
+}
+
+.mac-benefit-previous svg,
+.mac-benefit-next svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.mac-benefits-track {
+  --mac-benefit-card-width: clamp(280px, 32vw, 380px);
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  padding: 20px max(24px, calc((100% - 1200px) / 2));
+  scroll-padding-inline: max(24px, calc((100% - 1200px) / 2));
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.mac-benefits-track::-webkit-scrollbar {
+  display: none;
+}
+
+.mac-benefit-card {
+  display: flex;
+  flex: 0 0 var(--mac-benefit-card-width);
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 20px;
+  background-color: #fff;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  scroll-snap-align: start;
+  text-align: left;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.mac-benefit-card:hover {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
+  transform: translateY(-4px);
+}
+
+.mac-benefit-copy {
+  padding: 24px 24px 12px;
+  text-align: left;
+}
+
+.mac-benefit-copy h2 {
+  margin-bottom: 10px;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  text-align: left;
+}
+
+.mac-benefit-copy p {
+  min-height: 48px;
+  color: #6e6e73;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.mac-benefit-card img {
+  display: block;
+  width: 100%;
+  height: 250px;
+  margin-top: auto;
+  object-fit: contain;
+  background-color: #fff;
+}
+
+.mac-chooser {
+  width: min(1120px, calc(100% - clamp(48px, 10vw, 160px)));
+  margin: 0 auto 64px;
+}
+
+.mac-chooser-heading {
+  margin-bottom: 24px;
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.mac-chooser-card {
+  display: grid;
+  min-height: 320px;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  border: 0;
+  border-radius: 24px;
+  color: inherit;
+  background-color: #fff;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  text-align: inherit;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.mac-chooser-card:hover,
+.mac-chooser-card:focus-visible {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
+  transform: translateY(-4px);
+}
+
+.mac-chooser-card:focus-visible {
+  outline: 3px solid #0071e3;
+  outline-offset: 3px;
+}
+
+.mac-chooser-copy {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+  padding: 40px;
+  text-align: center;
+}
+
+.mac-chooser-copy p {
+  max-width: 400px;
+  font-size: clamp(22px, 2.4vw, 32px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.mac-chooser-copy .hero-button {
+  min-height: 42px;
+  padding: 0 22px;
+  cursor: pointer;
+}
+
+.mac-chooser-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  object-fit: contain;
+  background-color: #fff;
+}
+
+.mac-switch {
+  width: min(1120px, calc(100% - clamp(48px, 10vw, 160px)));
+  margin: 0 auto 72px;
+}
+
+.mac-switch-heading {
+  margin-bottom: 24px;
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.mac-switch-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.mac-switch-card {
+  display: flex;
+  min-height: 530px;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 24px;
+  background-color: #fff;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.mac-switch-card:hover,
+.mac-switch-card:focus-within {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
+  transform: translateY(-4px);
+}
+
+.mac-switch-copy {
+  max-width: 390px;
+  min-height: 242px;
+  padding: 44px 24px 0;
+}
+
+.mac-switch-copy h3 {
+  margin-bottom: 8px;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.mac-switch-copy p {
+  margin-bottom: 12px;
+  color: #424245;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.mac-switch-copy a {
+  color: #06c;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.mac-switch-copy a:hover {
+  text-decoration: underline;
+}
+
+.mac-switch-copy a:focus-visible {
+  border-radius: 2px;
+  outline: 3px solid #0071e3;
+  outline-offset: 3px;
+}
+
+.mac-switch-art {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: auto;
+  object-fit: contain;
+}
+
+.mac-buy-dialog {
+  width: min(920px, calc(100% - 32px));
+  max-width: none;
+  max-height: min(760px, calc(100% - 32px));
+  margin: auto;
+  overflow: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 24px;
+  color: #1d1d1f;
+  background-color: #fff;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.24);
+}
+
+.mac-buy-dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.48);
+  backdrop-filter: blur(4px);
+}
+
+.mac-buy-shell {
+  padding: 24px 32px 32px;
+}
+
+.mac-buy-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  color: #6e6e73;
+  font-size: 14px;
+}
+
+.mac-buy-close {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  color: #424245;
+  background-color: #f5f5f7;
+  cursor: pointer;
+  font: inherit;
+  font-size: 27px;
+  line-height: 1;
+}
+
+.mac-buy-close:hover {
+  background-color: #e8e8ed;
+}
+
+.mac-buy-close:focus-visible {
+  outline: 3px solid #0071e3;
+  outline-offset: 2px;
+}
+
+.mac-buy-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+  align-items: start;
+  gap: 36px;
+}
+
+.mac-buy-content[hidden],
+.mac-buy-confirmation[hidden],
+.mac-buy-options[hidden] {
+  display: none;
+}
+
+.mac-buy-product-visual {
+  /* Stays in view while the options scroll, so color changes are visible */
+  position: sticky;
+  top: 0;
+  display: grid;
+  min-height: 320px;
+  place-items: center;
+  padding: 20px;
+  border-radius: 18px;
+  background-color: #f5f5f7;
+}
+
+.mac-buy-product-visual img {
+  display: block;
+  width: min(100%, 440px);
+  height: auto;
+  max-height: 340px;
+  object-fit: contain;
+  /* Blends white photo backgrounds into the grey frame */
+  mix-blend-mode: multiply;
+}
+
+
+
+
+
+
+.mac-buy-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.mac-buy-eyebrow {
+  margin: 0;
+  color: #6e6e73;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.mac-buy-form h2,
+.mac-buy-confirmation h2 {
+  margin: -10px 0 0;
+  font-size: 32px;
+  letter-spacing: -0.04em;
+}
+
+.mac-buy-price {
+  margin: -10px 0 0;
+  color: #424245;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.mac-buy-options {
+  min-width: 0;
+  border: 0;
+}
+
+.mac-buy-options legend {
+  margin-bottom: 12px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.mac-buy-option-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.mac-buy-option-groups:empty {
+  display: none;
+}
+
+.mac-buy-choice-list {
+  display: grid;
+  gap: 10px;
+}
+
+.mac-buy-choice-list-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.mac-buy-spec-choice {
+  display: flex;
+  min-height: 52px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  box-shadow: inset 0 0 0 1px #d2d2d7;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: center;
+  transition: box-shadow 0.15s ease;
+}
+
+.mac-buy-choice-list-list .mac-buy-spec-choice {
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 12px;
+  text-align: left;
+}
+
+.mac-buy-spec-choice:hover {
+  box-shadow: inset 0 0 0 1px #86868b;
+}
+
+.mac-buy-spec-choice:has(input:checked) {
+  box-shadow: inset 0 0 0 2px #0071e3;
+}
+
+.mac-buy-spec-price {
+  flex-shrink: 0;
+  color: #6e6e73;
+  font-size: 12px;
+}
+
+.mac-buy-spec-price:empty {
+  display: none;
+}
+
+.mac-buy-total {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.mac-buy-spec-choice input,
+.mac-buy-finish-choice input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+.mac-buy-spec-choice:has(input:focus-visible),
+.mac-buy-finish-choice:has(input:focus-visible) {
+  outline: 3px solid #0071e3;
+  outline-offset: 3px;
+}
+
+.mac-buy-finish-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.mac-buy-finish-choice {
+  display: inline-flex;
+  min-width: 34px;
+  min-height: 34px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.mac-buy-swatch {
+  width: 26px;
+  height: 26px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.24);
+}
+
+.mac-buy-finish-choice:has(input:checked) .mac-buy-swatch {
+  box-shadow: 0 0 0 2px #0071e3;
+}
+
+.mac-buy-finish-choice > span:last-child {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+.mac-buy-selected-finish {
+  margin: 10px 0 0;
+  color: #6e6e73;
+  font-size: 13px;
+}
+
+.mac-buy-delivery {
+  margin: 0;
+  color: #6e6e73;
+  font-size: 13px;
+}
+
+/* Total and Add to Bag stay pinned to the bottom of the buy window while options scroll */
+.mac-buy-footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 16px;
+  margin-bottom: -32px;
+  padding: 16px 0 24px;
+  border-top: 1px solid #e8e8ed;
+  background-color: #fff;
+}
+
+.mac-buy-submit {
+  align-self: flex-start;
+  min-height: 44px;
+  padding: 0 24px;
+  cursor: pointer;
+  font: inherit;
+}
+
+.mac-buy-confirmation {
+  display: flex;
+  min-height: 320px;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
+  padding: 32px;
+  text-align: center;
+}
+
+.mac-buy-confirmation > p:not(.mac-buy-eyebrow) {
+  max-width: 480px;
+  margin: 0;
+  color: #6e6e73;
+  line-height: 1.5;
+}
+
+.mac-buy-confirmation .hero-button {
+  cursor: pointer;
+}
+
+.mac-buy-confirmation-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.mac-buy-confirmation-actions .hero-button {
+  min-height: 42px;
+  cursor: pointer;
+  font: inherit;
+}
+
+.mac-bag-dialog {
+  width: min(760px, calc(100% - 32px));
+  max-width: none;
+  max-height: min(760px, calc(100% - 32px));
+  margin: auto;
+  overflow: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 24px;
+  color: #1d1d1f;
+  background-color: #fff;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.24);
+}
+
+.mac-bag-dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.48);
+  backdrop-filter: blur(4px);
+}
+
+.mac-bag-shell {
+  padding: 32px;
+}
+
+.mac-bag-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 26px;
+}
+
+.mac-bag-header h2 {
+  margin-top: 6px;
+  font-size: 30px;
+  letter-spacing: -0.04em;
+}
+
+.mac-bag-items {
+  display: flex;
+  flex-direction: column;
+}
+
+.mac-bag-item {
+  display: grid;
+  grid-template-columns: 104px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 20px;
+  padding: 22px 0;
+  border-top: 1px solid #e8e8ed;
+}
+
+.mac-bag-item {
+  position: relative;
+}
+
+/* Grey tile behind the thumbnail, so white photo backgrounds can blend into it */
+.mac-bag-item::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 104px;
+  height: 104px;
+  border-radius: 12px;
+  background-color: #f5f5f7;
+  content: "";
+  transform: translateY(-50%);
+}
+
+.mac-bag-item-image {
+  position: relative;
+  display: block;
+  width: 104px;
+  height: 104px;
+  padding: 8px;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+/* iPad photos have their own coloured backdrop, so they fill the tile instead */
+.mac-bag-item-image[src$=".png"] {
+  padding: 0;
+  border-radius: 12px;
+  object-fit: cover;
+  mix-blend-mode: normal;
+}
+
+.mac-bag-item-details h3 {
+  margin-bottom: 6px;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.mac-bag-item-details p {
+  margin: 3px 0 0;
+  color: #6e6e73;
+  font-size: 13px;
+}
+
+.mac-bag-item-price {
+  color: #1d1d1f !important;
+  font-weight: 600;
+}
+
+.mac-bag-item-controls {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 12px;
+}
+
+.mac-bag-quantity-button,
+.mac-bag-remove {
+  border: 0;
+  color: #06c;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+}
+
+.mac-bag-quantity-button {
+  display: grid;
+  width: 26px;
+  height: 26px;
+  place-items: center;
+  border: 1px solid #d2d2d7;
+  border-radius: 50%;
+  color: #1d1d1f;
+  font-size: 17px;
+}
+
+.mac-bag-quantity-button:disabled {
+  color: #86868b;
+  cursor: not-allowed;
+}
+
+.mac-bag-quantity {
+  min-width: 16px;
+  text-align: center;
+}
+
+.mac-bag-remove:hover,
+.mac-bag-quantity-button:hover:not(:disabled) {
+  text-decoration: underline;
+}
+
+.mac-bag-empty {
+  padding: 36px 0;
+  border-top: 1px solid #e8e8ed;
+  color: #6e6e73;
+  text-align: center;
+}
+
+.mac-bag-summary {
+  margin-top: 14px;
+  padding-top: 20px;
+  border-top: 1px solid #e8e8ed;
+}
+
+.mac-bag-subtotal {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 18px;
+}
+
+.mac-bag-disclaimer,
+.mac-bag-checkout-message,
+.mac-bag-storage-message {
+  margin: 12px 0 0;
+  color: #6e6e73;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.mac-bag-checkout-message[hidden],
+.mac-bag-storage-message[hidden] {
+  display: none;
+}
+
+.mac-bag-checkout {
+  width: 100%;
+  min-height: 46px;
+  margin-top: 18px;
+  cursor: pointer;
+  font: inherit;
+}
+
+.mac-bag-continue {
+  margin-top: 18px;
+  padding: 0;
+  border: 0;
+  color: #06c;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+}
+
+.mac-bag-continue:hover {
+  text-decoration: underline;
+}
+
+.mac-chooser-dialog {
+  width: min(520px, calc(100% - 32px));
+  max-width: none;
+  margin: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 20px;
+  color: #1d1d1f;
+  background-color: #fff;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.24);
+}
+
+.mac-chooser-dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+}
+
+.mac-chooser-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 32px;
+}
+
+.mac-chooser-progress {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.mac-chooser-progress-bar {
+  width: 100%;
+  height: 6px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 999px;
+  background-color: #e8e8ed;
+  accent-color: #0071e3;
+}
+
+.mac-chooser-progress-bar::-webkit-progress-bar {
+  border-radius: 999px;
+  background-color: #e8e8ed;
+}
+
+.mac-chooser-progress-bar::-webkit-progress-value {
+  border-radius: 999px;
+  background-color: #0071e3;
+  transition: width 0.2s ease;
+}
+
+.mac-chooser-progress-bar::-moz-progress-bar {
+  border-radius: 999px;
+  background-color: #0071e3;
+}
+
+.mac-chooser-step-count {
+  flex: 0 0 auto;
+  color: #6e6e73;
+  font-size: 13px;
+}
+
+.mac-chooser-step {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+}
+
+.mac-chooser-step[hidden],
+.mac-chooser-dialog-actions [hidden] {
+  display: none;
+}
+
+.mac-chooser-step legend {
+  width: 100%;
+  margin-bottom: 4px;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.mac-chooser-form h2 {
+  margin-bottom: 8px;
+  font-size: 28px;
+  letter-spacing: -0.03em;
+}
+
+.mac-chooser-form label {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.mac-chooser-form select {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid #d2d2d7;
+  border-radius: 10px;
+  color: #1d1d1f;
+  background-color: #fff;
+  font: inherit;
+}
+
+.mac-chooser-form select:focus-visible {
+  outline: 3px solid #0071e3;
+  outline-offset: 2px;
+}
+
+.mac-chooser-result[hidden] {
+  display: none;
+}
+
+.mac-chooser-result {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.mac-chooser-result-eyebrow {
+  margin: 0;
+  color: #6e6e73;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.mac-chooser-result h3 {
+  margin: 0;
+  font-size: 26px;
+  letter-spacing: -0.03em;
+}
+
+.mac-chooser-result > p:not(.mac-chooser-result-eyebrow) {
+  margin: 0;
+  color: #6e6e73;
+  line-height: 1.5;
+}
+
+.mac-chooser-result img {
+  display: block;
+  width: min(100%, 360px);
+  max-height: 180px;
+  object-fit: contain;
+}
+
+.mac-chooser-result a {
+  min-height: 40px;
+  padding: 0 18px;
+}
+
+.mac-chooser-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.mac-chooser-dialog-actions .hero-button {
+  min-height: 40px;
+  padding: 0 18px;
+  cursor: pointer;
+}
+
+.mac-chooser-dialog-actions .hero-button-secondary {
+  border-color: #d2d2d7;
+  background-color: #fff;
+}
+
 .navbar {
   background-color: transparent;
   height: 48px;
@@ -70,7 +1466,59 @@ body {
 }
 
 .mobile-menu-toggle,
-.search-toggle {
+.search-toggle,
+.bag-toggle {
+  display: none;
+}
+
+.bag-toggle {
+  position: absolute;
+  top: 0;
+  right: max(24px, calc((100vw - 1280px) / 2));
+  display: flex;
+  width: 44px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  color: #f5f5f7;
+  background: transparent;
+  cursor: pointer;
+}
+
+.bag-toggle svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.5;
+}
+
+.bag-toggle:focus-visible {
+  outline: 2px solid #f5f5f7;
+  outline-offset: -5px;
+}
+
+.bag-count {
+  position: absolute;
+  top: 6px;
+  right: 1px;
+  display: grid;
+  min-width: 16px;
+  height: 16px;
+  place-items: center;
+  padding: 0 4px;
+  border-radius: 999px;
+  color: #1d1d1f;
+  background-color: #f5f5f7;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.bag-count[hidden] {
   display: none;
 }
 
@@ -222,6 +1670,165 @@ body {
   gap: 12px;
   transform: translateX(-50%);
   white-space: nowrap;
+}
+
+/* Mac page banner card: Richard's Special Mac (reflective finish comes from .reflective-surface) */
+.mac-special {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  align-items: center;
+  width: calc(100% - 24px);
+  margin: 0 auto;
+  border-radius: 8px;
+  color: #f5f5f7;
+}
+
+.mac-special-copy {
+  position: relative;
+  z-index: 2;
+}
+
+.mac-special-visual img {
+  display: block;
+  width: 100%;
+  height: clamp(440px, 44vw, 640px);
+  /* The photo's own black backdrop blends into the card, so show it whole */
+  object-fit: contain;
+}
+
+.mac-special-copy {
+  padding: clamp(32px, 5vw, 72px);
+}
+
+.mac-special-eyebrow {
+  margin-bottom: 10px;
+  color: #f5a623;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.mac-special-copy h1 {
+  margin-bottom: 12px;
+  font-size: clamp(36px, 4.6vw, 64px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+.mac-special-tagline {
+  margin-bottom: 28px;
+  color: #a1a1a6;
+  font-size: clamp(17px, 1.6vw, 21px);
+  line-height: 1.4;
+}
+
+.mac-special-specs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 24px;
+  margin-bottom: 28px;
+  padding: 24px 0;
+  border-top: 1px solid #333336;
+  border-bottom: 1px solid #333336;
+  list-style: none;
+}
+
+.mac-special-specs li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mac-special-specs strong {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.mac-special-specs span {
+  color: #a1a1a6;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.mac-special-price {
+  margin-bottom: 20px;
+  font-size: 15px;
+}
+
+.mac-special-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.mac-special .hero-button:focus-visible {
+  outline-color: #f5f5f7;
+}
+
+/* Full-frame photos (Richard's Special Mac) fill the buy and bag image frames */
+.mac-buy-product-visual.is-full-bleed {
+  padding: 0;
+  overflow: hidden;
+  background-color: #000;
+}
+
+.mac-buy-product-visual.is-full-bleed img {
+  width: 100%;
+  height: auto;
+  max-height: 520px;
+  object-fit: cover;
+  mix-blend-mode: normal;
+}
+
+.mac-bag-item-image.is-full-bleed {
+  padding: 0;
+  border-radius: 12px;
+  object-fit: cover;
+  mix-blend-mode: normal;
+}
+
+/* iPhone page banner: cropped on desktop, full photo on mobile (see responsive.css) */
+.iphone-banner {
+  position: relative;
+  width: calc(100% - 24px);
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: #1d1d1f;
+}
+
+.iphone-banner::after {
+  position: absolute;
+  inset: 0;
+  /* Photo fades into black toward the top, behind the title */
+  background: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.75) 18%, rgba(0, 0, 0, 0) 55%);
+  content: "";
+  pointer-events: none;
+}
+
+.iphone-banner-image {
+  display: block;
+  width: 100%;
+  height: clamp(360px, 46vw, 640px);
+  object-fit: cover;
+  object-position: 50% 35%;
+}
+
+.iphone-banner-title {
+  position: absolute;
+  top: clamp(20px, 4vw, 56px);
+  right: 0;
+  left: 0;
+  z-index: 1;
+  padding: 0 24px;
+  color: #fff;
+  font-size: clamp(56px, 10vw, 148px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  text-align: center;
+  text-shadow: 0 4px 28px rgba(0, 0, 0, 0.4);
 }
 
 .hero-button {
@@ -382,7 +1989,9 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .product-panel {
+  .product-panel,
+  .mac-product-card,
+  .mac-benefit-card {
     transition: none;
   }
 }
@@ -609,8 +2218,9 @@ body {
 
 .bahamas-feature > p:not(.bahamas-disclaimer) {
   margin-bottom: 14px;
-  font-size: 14px;
-  line-height: 1.65;
+  color: #86868b;
+  font-size: 12px;
+  line-height: 1.5;
 }
 
 /* --- 11. Site Footer --- */
@@ -781,10 +2391,138 @@ body {
   margin-bottom: 24px;
 }
 
+.support-category-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.support-category-links a {
+  padding: 8px 16px;
+  border-radius: 980px;
+  color: #1d1d1f;
+  background-color: #e8e8ed;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.support-category-links a:hover {
+  background-color: #d2d2d7;
+}
+
+.support-category-links a:focus-visible {
+  outline: 3px solid #0071e3;
+  outline-offset: 2px;
+}
+
+.support-category {
+  padding-top: 32px;
+  scroll-margin-top: 64px;
+}
+
+.support-category-heading {
+  margin-bottom: 16px;
+  color: #1d1d1f;
+  font-size: 32px;
+  letter-spacing: -0.035em;
+}
+
 .support-product-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
+}
+
+#support-ipad .support-product-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.support-product-card {
+  scroll-margin-top: 72px;
+}
+
+.support-product-image {
+  display: flex;
+  height: 160px;
+  margin-bottom: 18px;
+  align-items: center;
+  justify-content: center;
+}
+
+.support-product-image img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.support-product-image img[src$=".png"] {
+  border-radius: 12px;
+}
+
+.support-product-price {
+  margin-top: auto;
+  color: #1d1d1f !important;
+  font-weight: 600;
+}
+
+/* Richard's Special Mac: the premium card, full-width, black, and landscape */
+.support-product-card.support-product-card-featured {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: 32px;
+  padding: 0 40px 0 0;
+  overflow: hidden;
+  color: #f5f5f7;
+  background-color: #000;
+}
+
+.support-product-card-featured .support-product-image {
+  height: 320px;
+  margin: 0;
+}
+
+.support-product-card-featured .support-product-image img {
+  height: 100%;
+}
+
+.support-product-featured-copy {
+  padding: 32px 0;
+}
+
+.support-product-card-featured .support-product-eyebrow {
+  color: #f5a623;
+}
+
+.support-product-card.support-product-card-featured h4 {
+  color: #f5f5f7;
+  font-size: 32px;
+  letter-spacing: -0.035em;
+}
+
+.support-product-featured-copy > p:not(.support-product-eyebrow) {
+  margin-bottom: 16px;
+  color: #a1a1a6;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.support-product-card-featured .support-product-price {
+  color: #f5f5f7 !important;
+}
+
+.support-product-card-featured .support-product-link {
+  color: #2997ff;
+}
+
+/* Highlight the card a "Learn more" link jumped to */
+.support-product-card:target {
+  box-shadow: 0 0 0 3px #0071e3, 0 12px 28px rgba(0, 0, 0, 0.12);
 }
 
 .support-product-card,
@@ -798,7 +2536,8 @@ body {
 .support-product-card {
   position: relative;
   z-index: 0;
-  display: block;
+  display: flex;
+  flex-direction: column;
   color: inherit;
   text-decoration: none;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -816,7 +2555,7 @@ body {
   outline-offset: 3px;
 }
 
-.support-product-year {
+.support-product-eyebrow {
   margin-bottom: 12px;
   color: #6e6e73;
   font-size: 12px;
@@ -824,7 +2563,7 @@ body {
   letter-spacing: 0.06em;
 }
 
-.support-product-card h3,
+.support-product-card h4,
 .support-tip-list h3 {
   margin-bottom: 10px;
   color: #1d1d1f;
@@ -832,7 +2571,7 @@ body {
   letter-spacing: -0.025em;
 }
 
-.support-product-card > p:not(.support-product-year),
+.support-product-card > p:not(.support-product-eyebrow),
 .support-tip-list p {
   margin-bottom: 16px;
   color: #6e6e73;
@@ -865,4 +2604,101 @@ body {
 
 .support-tip-list p {
   margin-bottom: 0;
+}
+
+/* --- Reflective finish for premium black cards ---
+   Used by Richard's Special Mac (Mac page and support page) and the black homepage panels.
+   Kept at the end of the file so it wins over each card's own background and shadow. */
+.reflective-surface {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  /* Polished black surface with a lit top edge, like glass or a mirror finish */
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0) 38%),
+    linear-gradient(135deg, #0a0a0b 0%, #1d1d20 42%, #060607 58%, #141416 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 24px 60px rgba(0, 0, 0, 0.3);
+}
+
+.reflective-surface:hover,
+.reflective-surface:focus-within {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 28px 70px rgba(0, 0, 0, 0.38);
+}
+
+/* Sweep of light across the surface */
+.reflective-surface::before {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    115deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.1) 46%,
+    rgba(255, 255, 255, 0.03) 52%,
+    transparent 62%
+  );
+  background-size: 250% 100%;
+  background-position: 130% 0;
+  content: "";
+  pointer-events: none;
+}
+
+/* The sweep only runs while the card is hovered (or something in it has keyboard focus) */
+.reflective-surface:hover::before,
+.reflective-surface:focus-within::before {
+  animation: reflective-sheen 3.5s ease-in-out infinite;
+}
+
+/* Specular highlight that follows the pointer (position set in script.js) */
+.reflective-surface::after {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(
+    520px circle at var(--shine-x, 72%) var(--shine-y, 18%),
+    rgba(255, 255, 255, 0.13),
+    transparent 45%
+  );
+  content: "";
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+@keyframes reflective-sheen {
+  0% {
+    background-position: 130% 0;
+  }
+
+  55%,
+  100% {
+    background-position: -130% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reflective-surface:hover::before,
+  .reflective-surface:focus-within::before {
+    animation: none;
+  }
+}
+
+/* Photos on these cards have black backdrops; lighten drops them so the polish shows through */
+.reflective-surface img {
+  mix-blend-mode: lighten;
+}
+
+/* Text panels go transparent so they sit on the polished surface */
+.reflective-surface .product-copy {
+  background-color: transparent;
+}
+
+.reflective-surface .support-product-featured-copy {
+  position: relative;
+  z-index: 2;
 }

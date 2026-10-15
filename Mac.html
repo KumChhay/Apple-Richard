@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>My Website</title>
+    <title>Mac- Richard.LLC</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="responsive.css">
   </head>
@@ -73,7 +73,388 @@
           <path d="m13 13 4 4"></path>
         </svg>
       </button>
+      <button class="bag-toggle" type="button" aria-label="Shopping bag, 0 items" aria-haspopup="dialog" data-open-mac-bag>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M5.5 8h13l1 12h-15l1-12Z"></path>
+          <path d="M9 9V6a3 3 0 0 1 6 0v3"></path>
+        </svg>
+        <span class="bag-count" data-mac-bag-count hidden>0</span>
+      </button>
     </nav>
+    <p class="mac-announcement">
+      Get your brand new Mac with low monthly payments for 12 to 24 months, and maybe get scammed.
+    </p>
+    <section class="mac-special reflective-surface" aria-labelledby="mac-special-heading">
+      <div class="mac-special-visual">
+        <img src="images/C%20on%20MacBook.jpeg" alt="Richard's Special Mac, a one-of-a-kind hand-painted MacBook">
+      </div>
+      <div class="mac-special-copy">
+        <p class="mac-special-eyebrow">Only at Richard.LLC</p>
+        <h1 id="mac-special-heading">Richard's Special Mac</h1>
+        <p class="mac-special-tagline">One of one. Hand-finished, R1-powered, and absolutely Pro.</p>
+        <ul class="mac-special-specs">
+          <li><strong>R1 Pro or R1 Max</strong><span>Up to 18-core CPU and 40-core GPU</span></li>
+          <li><strong>Up to 256GB</strong><span>Unified memory, from 24GB</span></li>
+          <li><strong>Up to 8TB</strong><span>SSD storage, from 512GB</span></li>
+          <li><strong>Tandem OLED</strong><span>16-inch Ultra Retina XDR display</span></li>
+        </ul>
+        <p class="mac-special-price">From $3,999 or $333.25/mo. for 12 mo.*</p>
+        <div class="mac-special-actions">
+          <a class="hero-button hero-button-primary" href="support.html#support-richards-special-mac">Learn more</a>
+          <button class="hero-button hero-button-secondary" type="button" data-buy-mac="special">Buy ›</button>
+        </div>
+      </div>
+    </section>
+    <header class="mac-page-heading">
+      <h1>Choose your new Mac</h1>
+    </header>
+    <main class="mac-product-carousel">
+      <div class="mac-benefits-controls mac-product-controls" role="group" aria-label="Mac carousel controls">
+        <button class="mac-product-previous" type="button" aria-label="Previous Mac models" disabled>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m15 18-6-6 6-6"></path>
+          </svg>
+        </button>
+        <button class="mac-product-next" type="button" aria-label="Next Mac models">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m9 18 6-6-6-6"></path>
+          </svg>
+        </button>
+      </div>
+      <div
+        class="mac-product-grid"
+        tabindex="0"
+        role="region"
+        aria-label="Mac models"
+        aria-roledescription="carousel"
+      >
+      <article
+        class="mac-product-card"
+        id="macbook-air"
+        data-buy-mac-card="air"
+        tabindex="0"
+        aria-label="Open buy options for MacBook Air"
+      >
+        <div class="mac-product-image-wrap">
+          <img
+            class="mac-product-image"
+            src="images/nav_mba.jpg"
+            alt="MacBook Air laptops with blue and gold displays"
+          >
+        </div>
+        <ul class="mac-product-finishes" aria-label="Available finishes">
+          <li class="finish-sky-blue"><span class="visually-hidden">Sky blue</span></li>
+          <li class="finish-silver"><span class="visually-hidden">Silver</span></li>
+          <li class="finish-starlight"><span class="visually-hidden">Starlight</span></li>
+          <li class="finish-midnight"><span class="visually-hidden">Midnight</span></li>
+        </ul>
+        <div class="mac-product-details">
+          <h2>MacBook Air 13″ and 15″</h2>
+          <p class="mac-product-tagline">Thin. Fast. Powerful and portable.</p>
+          <div class="mac-product-pricing">
+            <p>From $1,299 or $108.25/mo. for 12 mo.*</p>
+          </div>
+          <div class="mac-product-actions">
+            <a class="hero-button hero-button-primary" href="support.html#support-macbook-air">Learn more</a>
+            <button class="hero-button hero-button-secondary" type="button" data-buy-mac="air">Buy ›</button>
+          </div>
+        </div>
+      </article>
+
+      <article
+        class="mac-product-card"
+        id="macbook-pro"
+        data-buy-mac-card="pro"
+        tabindex="0"
+        aria-label="Open buy options for MacBook Pro"
+      >
+        <div class="mac-product-image-wrap">
+          <img
+            class="mac-product-image"
+            src="images/nav_mbp.jpg"
+            alt="MacBook Pro laptops with a dark abstract display"
+          >
+        </div>
+        <ul class="mac-product-finishes" aria-label="Available finishes">
+          <li class="finish-space-black"><span class="visually-hidden">Space black</span></li>
+          <li class="finish-silver"><span class="visually-hidden">Silver</span></li>
+        </ul>
+        <div class="mac-product-details">
+          <h2>MacBook Pro 14″ and 16″</h2>
+          <p class="mac-product-tagline">Powerful performance. Ready for anything.</p>
+          <div class="mac-product-pricing">
+            <p>From $1,999 or $166.58/mo. for 12 mo.*</p>
+          </div>
+          <div class="mac-product-actions">
+            <a class="hero-button hero-button-primary" href="support.html#support-macbook-pro">Learn more</a>
+            <button class="hero-button hero-button-secondary" type="button" data-buy-mac="pro">Buy ›</button>
+          </div>
+        </div>
+      </article>
+
+      <article
+        class="mac-product-card"
+        id="macbook-neo"
+        data-buy-mac-card="neo"
+        tabindex="0"
+        aria-label="Open buy options for MacBook Neo"
+      >
+        <div class="mac-product-image-wrap">
+          <img
+            class="mac-product-image"
+            src="why mac images/nav_mbn.jpg"
+            alt="MacBook Neo laptops in several colors"
+          >
+        </div>
+        <ul class="mac-product-finishes" aria-label="Available finishes">
+          <li class="finish-silver"><span class="visually-hidden">Silver</span></li>
+          <li class="finish-neo-pink"><span class="visually-hidden">Blush</span></li>
+          <li class="finish-neo-yellow"><span class="visually-hidden">Citrus</span></li>
+          <li class="finish-neo-blue"><span class="visually-hidden">Indigo</span></li>
+        </ul>
+        <div class="mac-product-details">
+          <h2>MacBook Neo</h2>
+          <p class="mac-product-tagline">Colorful. Capable. Ready for everyday.</p>
+          <div class="mac-product-pricing">
+            <p>From $699.</p>
+          </div>
+          <div class="mac-product-actions">
+            <a class="hero-button hero-button-primary" href="support.html#support-macbook-neo">Learn more</a>
+            <button class="hero-button hero-button-secondary" type="button" data-buy-mac="neo">Buy ›</button>
+          </div>
+        </div>
+      </article>
+      </div>
+    </main>
+    <header class="mac-page-heading">
+      <h1>Why Richard.LLC is the best place to shop Mac</h1>
+    </header>
+    <section class="mac-benefits-carousel" aria-label="Why shop Mac with Richard.LLC">
+      <div class="mac-benefits-controls">
+        <button class="mac-benefit-previous" type="button" aria-label="Previous benefits" disabled>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m15 18-6-6 6-6"></path>
+          </svg>
+        </button>
+        <button class="mac-benefit-next" type="button" aria-label="Next benefits">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m9 18 6-6-6-6"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="mac-benefits-track" tabindex="0" aria-label="Scroll through Mac shopping benefits">
+        <article class="mac-benefit-card">
+          <div class="mac-benefit-copy">
+            <h2>Delivery &amp; Pickup</h2>
+            <p>Choose convenient delivery or pick up your new Mac when it works for you.</p>
+          </div>
+          <img src="why mac images/Delivery &amp; Pickup.png" alt="Apple shopping bag">
+        </article>
+        <article class="mac-benefit-card">
+          <div class="mac-benefit-copy">
+            <h2>Education</h2>
+            <p>Find helpful options and resources for students, educators, and learning.</p>
+          </div>
+          <img src="why mac images/Education.png" alt="Apple team member">
+        </article>
+        <article class="mac-benefit-card">
+          <div class="mac-benefit-copy">
+            <h2>Guided Shopping</h2>
+            <p>Get a hand comparing Mac models and finding the right fit for your needs.</p>
+          </div>
+          <img src="why mac images/Guided Shopping.png" alt="A selection of Mac laptops">
+        </article>
+        <article class="mac-benefit-card">
+          <div class="mac-benefit-copy">
+            <h2>Personal Setup</h2>
+            <p>Get help getting started and making your new Mac feel like yours.</p>
+          </div>
+          <img src="why mac images/Personal Setup.png" alt="Personalized Apple Card">
+        </article>
+        <article class="mac-benefit-card">
+          <div class="mac-benefit-copy">
+            <h2>Ways to pay</h2>
+            <p>Explore payment options and choose the way that works best for you.</p>
+          </div>
+          <img src="why mac images/Ways to pay.png" alt="Mac devices and accessories">
+        </article>
+      </div>
+    </section>
+    <section class="mac-chooser" aria-labelledby="mac-chooser-heading">
+      <h2 class="mac-chooser-heading" id="mac-chooser-heading">Help me choose.</h2>
+      <article
+        class="mac-chooser-card"
+        role="button"
+        tabindex="0"
+        aria-haspopup="dialog"
+        aria-label="Get started: answer a few questions to find the best Mac for you"
+        data-open-mac-chooser
+      >
+        <div class="mac-chooser-copy">
+          <p>Answer a few questions to find the best Mac for you.</p>
+          <span class="hero-button hero-button-primary">Get started</span>
+        </div>
+        <img
+          src="why mac images/Education.png"
+          alt="MacBook laptops with colorful displays"
+        >
+      </article>
+    </section>
+    <section class="mac-switch" aria-labelledby="mac-switch-heading">
+      <h2 class="mac-switch-heading" id="mac-switch-heading">Switch to Mac.</h2>
+      <div class="mac-switch-grid">
+        <article class="mac-switch-card">
+          <div class="mac-switch-copy">
+            <h3>Give us the old. Save on the new.</h3>
+            <p>With Richard.LLC Trade In, you can get a great value for your current device and apply it toward a new one. If your device isn't eligible for credit, we'll recycle it for free.<sup>1</sup></p>
+            <a href="support.html">See what your device is worth <span aria-hidden="true">›</span></a>
+          </div>
+          <img class="mac-switch-art mac-switch-trade-art" src="why mac images/Trade in.png" alt="An older MacBook being traded in for a new MacBook">
+        </article>
+        <article class="mac-switch-card">
+          <div class="mac-switch-copy">
+            <h3>Mac does that.</h3>
+            <p>See how easy it is to move to Mac.</p>
+            <a href="support.html">Learn more <span aria-hidden="true">›</span></a>
+          </div>
+          <img class="mac-switch-art mac-switch-move-art" src="why mac images/does that.png" alt="Mac apps and windows displayed across a Mac desktop and laptop">
+        </article>
+      </div>
+    </section>
+    <dialog class="mac-chooser-dialog" aria-labelledby="mac-chooser-dialog-title">
+      <form class="mac-chooser-form" novalidate>
+        <h2 id="mac-chooser-dialog-title">Find your Mac</h2>
+        <div class="mac-chooser-progress">
+          <progress class="mac-chooser-progress-bar" max="4" value="1" aria-label="Question 1 of 4"></progress>
+          <p class="mac-chooser-step-count" aria-live="polite">Question 1 of 4</p>
+        </div>
+        <fieldset class="mac-chooser-step" data-step="0">
+          <legend>What budget works for you?</legend>
+          <label for="mac-chooser-budget">Choose a price range</label>
+          <select id="mac-chooser-budget" name="budget" required>
+            <option value="" selected disabled>Choose a budget</option>
+            <option value="under-1000">Under $1,000</option>
+            <option value="1000-1500">$1,000–$1,500</option>
+            <option value="1500-2000">$1,500–$2,000</option>
+            <option value="over-2000">$2,000 or more</option>
+          </select>
+        </fieldset>
+        <fieldset class="mac-chooser-step" data-step="1" hidden>
+          <legend>What peripherals do you need?</legend>
+          <label for="mac-chooser-peripherals">Choose what you plan to use</label>
+          <select id="mac-chooser-peripherals" name="peripherals" required>
+            <option value="" selected disabled>Choose an option</option>
+            <option value="none">Just the Mac</option>
+            <option value="display">An external display</option>
+            <option value="accessories">Keyboard, mouse, or other accessories</option>
+            <option value="both">A display and accessories</option>
+          </select>
+        </fieldset>
+        <fieldset class="mac-chooser-step" data-step="2" hidden>
+          <legend>What will you use your Mac for?</legend>
+          <label for="mac-chooser-use">Choose your main use</label>
+          <select id="mac-chooser-use" name="use" required>
+            <option value="" selected disabled>Choose an option</option>
+            <option value="everyday">Everyday tasks</option>
+            <option value="school">School or work</option>
+            <option value="creative">Creative projects</option>
+            <option value="professional">Demanding professional work</option>
+          </select>
+        </fieldset>
+        <fieldset class="mac-chooser-step" data-step="3" hidden>
+          <legend>What matters most day to day?</legend>
+          <label for="mac-chooser-essential">Choose your top priority</label>
+          <select id="mac-chooser-essential" name="essential" required>
+            <option value="" selected disabled>Choose a priority</option>
+            <option value="portable">Easy to carry</option>
+            <option value="battery">Long battery life</option>
+            <option value="display">A larger display</option>
+            <option value="performance">Fast performance for everything</option>
+          </select>
+        </fieldset>
+        <section class="mac-chooser-result" data-mac-chooser-result aria-labelledby="mac-chooser-result-title" hidden>
+          <p class="mac-chooser-result-eyebrow">Your Mac match</p>
+          <h3 id="mac-chooser-result-title" data-mac-recommendation-title></h3>
+          <p data-mac-recommendation-description></p>
+          <img data-mac-recommendation-image alt="">
+          <a class="hero-button hero-button-primary" data-mac-recommendation-link>Explore your Mac</a>
+        </section>
+        <div class="mac-chooser-dialog-actions">
+          <button class="hero-button hero-button-secondary" type="button" data-previous-mac-step hidden>
+            Back
+          </button>
+          <button class="hero-button hero-button-primary" type="submit" data-confirm-mac-step>OK</button>
+        </div>
+      </form>
+    </dialog>
+    <dialog class="mac-buy-dialog" aria-labelledby="mac-buy-title">
+      <div class="mac-buy-shell">
+        <div class="mac-buy-topbar">
+          <p>Shop Mac</p>
+          <button class="mac-buy-close" type="button" aria-label="Close purchase window" data-close-mac-buy>
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="mac-buy-content" data-mac-buy-content>
+          <div class="mac-buy-product-visual">
+            <img data-mac-buy-image alt="">
+          </div>
+          <form class="mac-buy-form" data-mac-buy-form>
+            <p class="mac-buy-eyebrow">Customize your Mac</p>
+            <h2 id="mac-buy-title" data-mac-buy-title></h2>
+            <p class="mac-buy-price" data-mac-buy-price></p>
+            <fieldset class="mac-buy-options" data-mac-buy-finishes>
+              <legend>Finish</legend>
+              <div class="mac-buy-finish-options" data-mac-buy-finish-options></div>
+              <p class="mac-buy-selected-finish" data-mac-buy-selected-finish></p>
+            </fieldset>
+            <div class="mac-buy-option-groups" data-mac-buy-option-groups></div>
+            <p class="mac-buy-delivery">Free delivery and pickup options available.</p>
+            <div class="mac-buy-footer">
+              <p class="mac-buy-total" data-mac-buy-total aria-live="polite"></p>
+              <button class="hero-button hero-button-primary mac-buy-submit" type="submit">Add to Bag</button>
+            </div>
+          </form>
+        </div>
+        <section class="mac-buy-confirmation" data-mac-buy-confirmation aria-live="polite" hidden>
+          <p class="mac-buy-eyebrow">Your selection</p>
+          <h2>Added to your bag.</h2>
+          <p data-mac-buy-summary></p>
+          <div class="mac-buy-confirmation-actions">
+            <button class="hero-button hero-button-secondary" type="button" data-close-mac-buy>Continue shopping</button>
+            <button class="hero-button hero-button-primary" type="button" data-view-mac-bag>View Bag</button>
+          </div>
+        </section>
+      </div>
+    </dialog>
+    <dialog class="mac-bag-dialog" id="shopping-bag" aria-labelledby="mac-bag-title" data-mac-bag-dialog>
+      <div class="mac-bag-shell">
+        <header class="mac-bag-header">
+          <div>
+            <p class="mac-buy-eyebrow">Your bag</p>
+            <h2 id="mac-bag-title">Review your items.</h2>
+          </div>
+          <button class="mac-buy-close" type="button" aria-label="Close shopping bag" data-close-mac-bag>
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </header>
+        <div class="mac-bag-items" data-mac-bag-items></div>
+        <p class="mac-bag-empty" data-mac-bag-empty hidden>Your bag is empty.</p>
+        <p class="mac-bag-storage-message" data-mac-bag-storage-message role="status" hidden></p>
+        <div class="mac-bag-summary" data-mac-bag-summary hidden>
+          <p class="mac-bag-subtotal"><span>Estimated subtotal</span><strong data-mac-bag-subtotal></strong></p>
+          <p class="mac-bag-disclaimer">Prices shown are starting prices. Final configuration pricing may vary. Checkout is a demo and does not process orders or payments.</p>
+          <p class="mac-bag-checkout-message" data-mac-bag-checkout-message role="status" hidden></p>
+          <button class="hero-button hero-button-primary mac-bag-checkout" type="button" data-mac-bag-checkout>Check Out</button>
+        </div>
+        <button class="mac-bag-continue" type="button" data-close-mac-bag>Continue shopping</button>
+      </div>
+    </dialog>
+    <section class="bahamas-feature" aria-labelledby="mac-beach-story-heading">
+      <h2 id="mac-beach-story-heading">Richard's Day at the Beach</h2>
+      <p>Richard brought his MacBook to the beach for a little work between swims. Beneath a shady palm, he opened it to finish one quick email. The ocean breeze was perfect, the view was incredible, and the screen was just bright enough to show a new message: “Are you still working?”</p>
+      <p>He closed the laptop, tucked it safely away, and finally went for a swim. By sunset, Richard had finished absolutely nothing on his to-do list—but he had found the best place to relax, and a very good reason to bring his Mac back tomorrow.</p>
+    </section>
     <footer class="site-footer">
       <div class="footer-content">
         <div class="footer-brand">

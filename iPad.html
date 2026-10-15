@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>My Website</title>
+    <title>iPad - Richard.LLC</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="responsive.css">
   </head>
-  <body>
+  <body data-ipad-page>
     <nav class="navbar">
       <button
         class="mobile-menu-toggle"
@@ -24,7 +24,6 @@
         <img src="images/Apple Logo.png" alt="" class="logo">
       </a>
       <ul id="nav-links" class="nav-links">
-        <!-- Home with Full-Width Mega-Menu Dropdown -->
         <li class="dropdown">
           <a href="index.html">Home</a>
           <div class="dropdown-menu">
@@ -51,12 +50,9 @@
             </div>
           </div>
         </li>
-
-        <!-- Direct Navigation Links -->
         <li><a href="Mac.html">Mac</a></li>
         <li><a href="iPad.html">iPad</a></li>
         <li><a href="iPhone.html">iPhone</a></li>
-
       </ul>
       <div class="search-item">
         <input id="site-search" type="search" class="search-bar" placeholder="Search" aria-label="Search">
@@ -73,7 +69,350 @@
           <path d="m13 13 4 4"></path>
         </svg>
       </button>
+      <button class="bag-toggle" type="button" aria-label="Shopping bag, 0 items" aria-haspopup="dialog" data-open-mac-bag>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M5.5 8h13l1 12h-15l1-12Z"></path>
+          <path d="M9 9V6a3 3 0 0 1 6 0v3"></path>
+        </svg>
+        <span class="bag-count" data-mac-bag-count hidden>0</span>
+      </button>
     </nav>
+    <p class="mac-announcement">
+      Meet the iPad family. Powerful, portable, and ready for whatever you dream up.
+    </p>
+    <header class="mac-page-heading">
+      <h1>Choose your new iPad</h1>
+    </header>
+    <main class="ipad-product-carousel">
+      <div class="mac-benefits-controls ipad-carousel-controls" role="group" aria-label="iPad carousel controls">
+        <button class="ipad-carousel-previous" type="button" aria-label="Previous iPad models" disabled>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+        </button>
+        <button class="ipad-carousel-next" type="button" aria-label="Next iPad models">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+        </button>
+      </div>
+      <div class="ipad-product-track" tabindex="0" role="region" aria-label="iPad models" aria-roledescription="carousel">
+      <article class="mac-product-card" id="ipad" data-buy-mac-card="ipad" tabindex="0" aria-label="Open buy options for iPad" role="group" aria-roledescription="slide">
+        <div class="mac-product-image-wrap">
+          <img class="mac-product-image" src="Ipad images/nav_ipad.png" alt="iPad with a colorful display">
+        </div>
+        <ul class="mac-product-finishes" aria-label="Available finishes">
+          <li class="finish-ipad-blue"><span class="visually-hidden">Blue</span></li>
+          <li class="finish-ipad-pink"><span class="visually-hidden">Pink</span></li>
+          <li class="finish-silver"><span class="visually-hidden">Silver</span></li>
+          <li class="finish-ipad-yellow"><span class="visually-hidden">Yellow</span></li>
+        </ul>
+        <div class="mac-product-details">
+          <h2>iPad</h2>
+          <p class="mac-product-tagline">Colorful. Capable. A whole lot of fun.</p>
+          <div class="mac-product-pricing"><p>From $349.</p></div>
+          <div class="mac-product-actions">
+            <a class="hero-button hero-button-primary" href="support.html#support-ipad-base">Learn more</a>
+            <button class="hero-button hero-button-secondary" type="button" data-buy-mac="ipad">Buy ›</button>
+          </div>
+        </div>
+      </article>
+      <article class="mac-product-card" id="ipad-air" data-buy-mac-card="ipad-air" tabindex="0" aria-label="Open buy options for iPad Air" role="group" aria-roledescription="slide">
+        <div class="mac-product-image-wrap">
+          <img class="mac-product-image" src="Ipad images/nav_ipad_air.png" alt="iPad Air held in one hand">
+        </div>
+        <ul class="mac-product-finishes" aria-label="Available finishes">
+          <li class="finish-ipad-blue"><span class="visually-hidden">Blue</span></li>
+          <li class="finish-neo-purple"><span class="visually-hidden">Purple</span></li>
+          <li class="finish-starlight"><span class="visually-hidden">Starlight</span></li>
+          <li class="finish-space-gray"><span class="visually-hidden">Space gray</span></li>
+        </ul>
+        <div class="mac-product-details">
+          <h2>iPad Air</h2>
+          <p class="mac-product-tagline">Serious power. Light form. Ready to go.</p>
+          <div class="mac-product-pricing"><p>From $599.</p></div>
+          <div class="mac-product-actions">
+            <a class="hero-button hero-button-primary" href="support.html#support-ipad-air">Learn more</a>
+            <button class="hero-button hero-button-secondary" type="button" data-buy-mac="ipad-air">Buy ›</button>
+          </div>
+        </div>
+      </article>
+      <article class="mac-product-card" id="ipad-mini" data-buy-mac-card="ipad-mini" tabindex="0" aria-label="Open buy options for iPad mini" role="group" aria-roledescription="slide">
+        <div class="mac-product-image-wrap">
+          <img class="mac-product-image" src="Ipad images/nav_ipad_mini.png" alt="Two iPad mini models with vivid displays">
+        </div>
+        <ul class="mac-product-finishes" aria-label="Available finishes">
+          <li class="finish-ipad-blue"><span class="visually-hidden">Blue</span></li>
+          <li class="finish-neo-purple"><span class="visually-hidden">Purple</span></li>
+          <li class="finish-starlight"><span class="visually-hidden">Starlight</span></li>
+          <li class="finish-space-gray"><span class="visually-hidden">Space gray</span></li>
+        </ul>
+        <div class="mac-product-details">
+          <h2>iPad mini</h2>
+          <p class="mac-product-tagline">Full iPad experience. Delightfully portable.</p>
+          <div class="mac-product-pricing"><p>From $499.</p></div>
+          <div class="mac-product-actions">
+            <a class="hero-button hero-button-primary" href="support.html#support-ipad-mini">Learn more</a>
+            <button class="hero-button hero-button-secondary" type="button" data-buy-mac="ipad-mini">Buy ›</button>
+          </div>
+        </div>
+      </article>
+      <article class="mac-product-card" id="ipad-pro" data-buy-mac-card="ipad-pro" tabindex="0" aria-label="Open buy options for iPad Pro" role="group" aria-roledescription="slide">
+        <div class="mac-product-image-wrap">
+          <img class="mac-product-image" src="Ipad images/nav_ipad_pro.png" alt="iPad Pro models with an edge-to-edge display">
+        </div>
+        <ul class="mac-product-finishes" aria-label="Available finishes">
+          <li class="finish-space-black"><span class="visually-hidden">Space black</span></li>
+          <li class="finish-silver"><span class="visually-hidden">Silver</span></li>
+        </ul>
+        <div class="mac-product-details">
+          <h2>iPad Pro</h2>
+          <p class="mac-product-tagline">The ultimate iPad experience.</p>
+          <div class="mac-product-pricing"><p>From $999.</p></div>
+          <div class="mac-product-actions">
+            <a class="hero-button hero-button-primary" href="support.html#support-ipad-pro">Learn more</a>
+            <button class="hero-button hero-button-secondary" type="button" data-buy-mac="ipad-pro">Buy ›</button>
+          </div>
+        </div>
+      </article>
+      </div>
+    </main>
+    <header class="mac-page-heading">
+      <h1>Why Richard.LLC is the best place to shop iPad</h1>
+    </header>
+    <section class="mac-benefits-carousel" aria-label="Why shop iPad with Richard.LLC">
+      <div class="mac-benefits-controls">
+        <button class="mac-benefit-previous" type="button" aria-label="Previous benefits" disabled>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+        </button>
+        <button class="mac-benefit-next" type="button" aria-label="Next benefits">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+        </button>
+      </div>
+      <div class="mac-benefits-track" tabindex="0" aria-label="Scroll through iPad shopping benefits">
+        <article class="mac-benefit-card">
+          <div class="mac-benefit-copy">
+            <h2>Delivery &amp; Pickup</h2>
+            <p>Choose convenient delivery or pick up your new iPad when it works for you.</p>
+          </div>
+          <img src="why ipad images/Delivery &amp; Pickup.png" alt="Shopping bag ready for pickup">
+        </article>
+        <article class="mac-benefit-card">
+          <div class="mac-benefit-copy">
+            <h2>Education</h2>
+            <p>Find helpful options and resources for students, educators, and learning.</p>
+          </div>
+          <img src="why ipad images/Education.png" alt="iPad with tools for learning">
+        </article>
+        <article class="mac-benefit-card">
+          <div class="mac-benefit-copy">
+            <h2>Guided Shopping</h2>
+            <p>Get a hand comparing iPad models and finding the right fit for your needs.</p>
+          </div>
+          <img src="why ipad images/Guided Shopping.png" alt="iPad with notes and a presentation">
+        </article>
+        <article class="mac-benefit-card">
+          <div class="mac-benefit-copy">
+            <h2>Personal Setup</h2>
+            <p>Get help getting started and making your new iPad feel like yours.</p>
+          </div>
+          <img src="why ipad images/Personal setup.png" alt="Personalized setup with an iPad">
+        </article>
+        <article class="mac-benefit-card">
+          <div class="mac-benefit-copy">
+            <h2>Personalized Engraving</h2>
+            <p>Add a personal touch to select iPad and Apple Pencil accessories.</p>
+          </div>
+          <img src="why ipad images/Personalized Engraving.png" alt="Personalized message engraved on an iPad">
+        </article>
+        <article class="mac-benefit-card">
+          <div class="mac-benefit-copy">
+            <h2>Ways to pay</h2>
+            <p>Explore payment options and choose the way that works best for you.</p>
+          </div>
+          <img src="why ipad images/Ways to pay.png" alt="iPad and accessories">
+        </article>
+      </div>
+    </section>
+    <section class="mac-chooser" aria-labelledby="ipad-chooser-heading">
+      <h2 class="mac-chooser-heading" id="ipad-chooser-heading">Help me choose.</h2>
+      <article
+        class="mac-chooser-card"
+        role="button"
+        tabindex="0"
+        aria-haspopup="dialog"
+        aria-label="Get started: answer a few questions to find the best iPad for you"
+        data-open-mac-chooser
+      >
+        <div class="mac-chooser-copy">
+          <p>Answer a few questions to find the best iPad for you.</p>
+          <span class="hero-button hero-button-primary">Get started</span>
+        </div>
+        <img src="why ipad images/Education.png" alt="iPad with colorful learning tools">
+      </article>
+    </section>
+    <section class="ipad-essentials" aria-labelledby="ipad-essentials-heading">
+      <header class="mac-page-heading">
+        <h1 id="ipad-essentials-heading">iPad essentials.</h1>
+      </header>
+      <div class="ipad-essentials-grid">
+        <article
+          class="ipad-essential-card ipad-essential-pencil"
+          data-buy-mac-card="apple-pencil"
+          tabindex="0"
+          aria-label="Open buy options for Apple Pencil"
+        >
+          <div class="ipad-essential-copy">
+            <h2>Apple Pencil</h2>
+            <p>Dream it up. Jot it down.</p>
+            <button class="hero-button hero-button-secondary" type="button" data-buy-mac="apple-pencil">Buy ›</button>
+          </div>
+          <img src="why ipad images/Apple Pencile.png" alt="Apple Pencil with an iPad displaying colorful notes">
+        </article>
+        <article
+          class="ipad-essential-card ipad-essential-keyboard"
+          data-buy-mac-card="magic-keyboard"
+          tabindex="0"
+          aria-label="Open buy options for Magic Keyboard"
+        >
+          <img src="why ipad images/Magic keyboard.png" alt="Magic Keyboard connected to an iPad">
+          <div class="ipad-essential-copy">
+            <h2>Magic Keyboard</h2>
+            <p>Type it out. Take it with you.</p>
+            <button class="hero-button hero-button-secondary" type="button" data-buy-mac="magic-keyboard">Buy ›</button>
+          </div>
+        </article>
+      </div>
+    </section>
+    <dialog class="mac-chooser-dialog" aria-labelledby="mac-chooser-dialog-title">
+      <form class="mac-chooser-form" novalidate>
+        <h2 id="mac-chooser-dialog-title">Find your iPad</h2>
+        <div class="mac-chooser-progress">
+          <progress class="mac-chooser-progress-bar" max="4" value="1" aria-label="Question 1 of 4"></progress>
+          <p class="mac-chooser-step-count" aria-live="polite">Question 1 of 4</p>
+        </div>
+        <fieldset class="mac-chooser-step" data-step="0">
+          <legend>What budget works for you?</legend>
+          <label for="ipad-chooser-budget">Choose a price range</label>
+          <select id="ipad-chooser-budget" name="budget" required>
+            <option value="" selected disabled>Choose a budget</option>
+            <option value="under-500">Under $500</option>
+            <option value="500-799">$500–$799</option>
+            <option value="800-1199">$800–$1,199</option>
+            <option value="1200-plus">$1,200 or more</option>
+          </select>
+        </fieldset>
+        <fieldset class="mac-chooser-step" data-step="1" hidden>
+          <legend>What accessories do you need?</legend>
+          <label for="ipad-chooser-accessories">Choose what you plan to use</label>
+          <select id="ipad-chooser-accessories" name="peripherals" required>
+            <option value="" selected disabled>Choose an option</option>
+            <option value="none">Just the iPad</option>
+            <option value="pencil">Apple Pencil</option>
+            <option value="keyboard">Keyboard</option>
+            <option value="both">Pencil and keyboard</option>
+          </select>
+        </fieldset>
+        <fieldset class="mac-chooser-step" data-step="2" hidden>
+          <legend>What will you use your iPad for?</legend>
+          <label for="ipad-chooser-use">Choose your main use</label>
+          <select id="ipad-chooser-use" name="use" required>
+            <option value="" selected disabled>Choose an option</option>
+            <option value="everyday">Everyday tasks and entertainment</option>
+            <option value="school">School or work</option>
+            <option value="creative">Drawing and creative projects</option>
+            <option value="professional">Demanding professional work</option>
+          </select>
+        </fieldset>
+        <fieldset class="mac-chooser-step" data-step="3" hidden>
+          <legend>What matters most day to day?</legend>
+          <label for="ipad-chooser-priority">Choose your top priority</label>
+          <select id="ipad-chooser-priority" name="essential" required>
+            <option value="" selected disabled>Choose a priority</option>
+            <option value="portable">Easy to carry</option>
+            <option value="display">A larger, immersive display</option>
+            <option value="drawing">Drawing and note-taking</option>
+            <option value="performance">Fast performance for everything</option>
+          </select>
+        </fieldset>
+        <section class="mac-chooser-result" data-mac-chooser-result aria-labelledby="mac-chooser-result-title" hidden>
+          <p class="mac-chooser-result-eyebrow">Your iPad match</p>
+          <h3 id="mac-chooser-result-title" data-mac-recommendation-title></h3>
+          <p data-mac-recommendation-description></p>
+          <img data-mac-recommendation-image alt="">
+          <a class="hero-button hero-button-primary" data-mac-recommendation-link>Explore your iPad</a>
+        </section>
+        <div class="mac-chooser-dialog-actions">
+          <button class="hero-button hero-button-secondary" type="button" data-previous-mac-step hidden>Back</button>
+          <button class="hero-button hero-button-primary" type="submit" data-confirm-mac-step>OK</button>
+        </div>
+      </form>
+    </dialog>
+    <dialog class="mac-buy-dialog" aria-labelledby="mac-buy-title">
+      <div class="mac-buy-shell">
+        <div class="mac-buy-topbar">
+          <p>Shop iPad</p>
+          <button class="mac-buy-close" type="button" aria-label="Close purchase window" data-close-mac-buy>
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="mac-buy-content" data-mac-buy-content>
+          <div class="mac-buy-product-visual"><img data-mac-buy-image alt=""></div>
+          <form class="mac-buy-form" data-mac-buy-form>
+            <p class="mac-buy-eyebrow">Customize your iPad</p>
+            <h2 id="mac-buy-title" data-mac-buy-title></h2>
+            <p class="mac-buy-price" data-mac-buy-price></p>
+            <fieldset class="mac-buy-options" data-mac-buy-finishes>
+              <legend>Finish</legend>
+              <div class="mac-buy-finish-options" data-mac-buy-finish-options></div>
+              <p class="mac-buy-selected-finish" data-mac-buy-selected-finish></p>
+            </fieldset>
+            <div class="mac-buy-option-groups" data-mac-buy-option-groups></div>
+            <p class="mac-buy-delivery">Free delivery and pickup options available.</p>
+            <div class="mac-buy-footer">
+              <p class="mac-buy-total" data-mac-buy-total aria-live="polite"></p>
+              <button class="hero-button hero-button-primary mac-buy-submit" type="submit">Add to Bag</button>
+            </div>
+          </form>
+        </div>
+        <section class="mac-buy-confirmation" data-mac-buy-confirmation aria-live="polite" hidden>
+          <p class="mac-buy-eyebrow">Your selection</p>
+          <h2>Added to your bag.</h2>
+          <p data-mac-buy-summary></p>
+          <div class="mac-buy-confirmation-actions">
+            <button class="hero-button hero-button-secondary" type="button" data-close-mac-buy>Continue shopping</button>
+            <button class="hero-button hero-button-primary" type="button" data-view-mac-bag>View Bag</button>
+          </div>
+        </section>
+      </div>
+    </dialog>
+    <dialog class="mac-bag-dialog" id="shopping-bag" aria-labelledby="mac-bag-title" data-mac-bag-dialog>
+      <div class="mac-bag-shell">
+        <header class="mac-bag-header">
+          <div>
+            <p class="mac-buy-eyebrow">Your bag</p>
+            <h2 id="mac-bag-title">Review your items.</h2>
+          </div>
+          <button class="mac-buy-close" type="button" aria-label="Close shopping bag" data-close-mac-bag>
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </header>
+        <div class="mac-bag-items" data-mac-bag-items></div>
+        <p class="mac-bag-empty" data-mac-bag-empty hidden>Your bag is empty.</p>
+        <p class="mac-bag-storage-message" data-mac-bag-storage-message role="status" hidden></p>
+        <div class="mac-bag-summary" data-mac-bag-summary hidden>
+          <p class="mac-bag-subtotal"><span>Estimated subtotal</span><strong data-mac-bag-subtotal></strong></p>
+          <p class="mac-bag-disclaimer">Prices shown are starting prices. Final configuration pricing may vary. Checkout is a demo and does not process orders or payments.</p>
+          <p class="mac-bag-checkout-message" data-mac-bag-checkout-message role="status" hidden></p>
+          <button class="hero-button hero-button-primary mac-bag-checkout" type="button" data-mac-bag-checkout>Check Out</button>
+        </div>
+        <button class="mac-bag-continue" type="button" data-close-mac-bag>Continue shopping</button>
+      </div>
+    </dialog>
+    <section class="bahamas-feature" aria-labelledby="ipad-story-heading">
+      <h2 id="ipad-story-heading">Terms &amp; Conditions for Richard's Trip to the Moon 😂</h2>
+      <p>By continuing to read this completely unofficial agreement, you acknowledge that Richard has announced plans to take his iPad on a brief lunar getaway. “Brief” is not defined and may include several sunsets, one small step, and an unreasonable number of photos of Earth.</p>
+      <p><strong>1. Mission essentials.</strong> Richard agrees to bring a fully charged iPad, a compatible charger, and enough storage for moon selfies. The iPad may be used for navigation, entertainment, note-taking, and pretending to be busy during the journey.</p>
+      <p><strong>2. Lunar conduct.</strong> Low gravity may cause floating accessories, dramatic slow-motion gestures, and accidental screen rotations. Richard accepts responsibility for securing his iPad before opening any important document or snack packet.</p>
+      <p><strong>3. Communications and return.</strong> Messages sent from the Moon may be delayed by distance, weak signal, or Richard forgetting to turn off airplane mode. Return timing is subject to available rockets, weather, and whether he has finished his current episode.</p>
+      <p><strong>4. Final acknowledgment.</strong> This story is for entertainment only and is not a real travel contract, safety manual, or promise that an iPad can go to the Moon. By reaching the end, you agree that Richard should probably pack a sweater. 😂</p>
+    </section>
     <footer class="site-footer">
       <div class="footer-content">
         <div class="footer-brand">
