@@ -408,6 +408,13 @@
     width: 100%;
   }
 
+  .search-suggestions {
+    left: 0;
+    width: 100%;
+    min-width: 260px;
+    transform: none;
+  }
+
   .navbar.search-open .search-item {
     visibility: visible;
     transform: scaleX(1);

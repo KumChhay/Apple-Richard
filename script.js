@@ -33,6 +33,229 @@ navbar.querySelectorAll(".nav-links a").forEach((link) => {
   });
 });
 
+// --- Site search: suggestions while typing, navigation only on Enter (or picking a suggestion) ---
+const siteSearchIndex = [
+  { group: "Pages", title: "Home", detail: "Richard.LLC home", url: "index.html", keywords: "home overview start main front" },
+  { group: "Pages", title: "Mac", detail: "Shop every Mac", url: "Mac.html", keywords: "mac macbook laptop computer notebook" },
+  { group: "Pages", title: "iPad", detail: "Shop every iPad", url: "iPad.html", keywords: "ipad tablet" },
+  { group: "Pages", title: "iPhone", detail: "Shop every iPhone", url: "iPhone.html", keywords: "iphone phone smartphone mobile" },
+  { group: "Pages", title: "Support", detail: "Product guide, tips, and contact", url: "support.html", keywords: "support help guide tips contact" },
+  { group: "Pages", title: "Shopping bag", detail: "Review your items", action: "bag", url: "Mac.html#shopping-bag", keywords: "bag cart basket checkout order" },
+
+  { group: "Products", title: "Richard's Special Mac", detail: "Mac · From $3,999", url: "Mac.html#mac-special-heading", keywords: "special richard r1 pro max tandem oled premium macbook laptop" },
+  { group: "Products", title: "MacBook Air", detail: "Mac · From $1,299", url: "Mac.html#macbook-air", keywords: "macbook air m5 laptop 13 15 inch" },
+  { group: "Products", title: "MacBook Pro", detail: "Mac · From $1,999", url: "Mac.html#macbook-pro", keywords: "macbook pro m5 max laptop 14 16 inch" },
+  { group: "Products", title: "MacBook Neo", detail: "Mac · From $699", url: "Mac.html#macbook-neo", keywords: "macbook neo laptop colorful student cheap budget" },
+  { group: "Products", title: "iPad", detail: "iPad · From $349", url: "iPad.html#ipad", keywords: "ipad tablet 11 inch colorful" },
+  { group: "Products", title: "iPad Air", detail: "iPad · From $599", url: "iPad.html#ipad-air", keywords: "ipad air tablet 11 13 inch" },
+  { group: "Products", title: "iPad mini", detail: "iPad · From $499", url: "iPad.html#ipad-mini", keywords: "ipad mini tablet small 8.3 inch" },
+  { group: "Products", title: "iPad Pro", detail: "iPad · From $999", url: "iPad.html#ipad-pro", keywords: "ipad pro tablet 11 13 inch oled" },
+  { group: "Products", title: "Apple Pencil", detail: "iPad accessory · $129", url: "iPad.html#ipad-essentials-heading", keywords: "apple pencil stylus draw pen accessory" },
+  { group: "Products", title: "Magic Keyboard", detail: "iPad accessory · $349", url: "iPad.html#ipad-essentials-heading", keywords: "magic keyboard trackpad typing accessory" },
+  { group: "Products", title: "iPhone Duo", detail: "iPhone · From $1,999", url: "iPhone.html#iphone-duo", keywords: "iphone duo foldable fold phone" },
+  { group: "Products", title: "iPhone 18 Pro", detail: "iPhone · From $1,099", url: "iPhone.html#iphone-18-pro", keywords: "iphone 18 pro max phone camera" },
+  { group: "Products", title: "iPhone Air", detail: "iPhone · From $999", url: "iPhone.html#iphone-air", keywords: "iphone air thin light phone" },
+  { group: "Products", title: "iPhone 17", detail: "iPhone · From $799", url: "iPhone.html#iphone-17", keywords: "iphone 17 phone" },
+  { group: "Products", title: "iPhone 17e", detail: "iPhone · From $599", url: "iPhone.html#iphone-17e", keywords: "iphone 17e phone cheap budget" },
+  { group: "Products", title: "MagSafe Charger", detail: "iPhone accessory · $49", url: "iPhone.html#iphone-essentials-heading", keywords: "magsafe charger wireless charging accessory" },
+  { group: "Products", title: "AirPods", detail: "iPhone accessory · $179", url: "iPhone.html#iphone-essentials-heading", keywords: "airpods headphones earbuds music audio accessory" },
+
+  { group: "Support", title: "Contact support", detail: "Call or email a person", url: "support.html#support-contact", keywords: "contact call phone email talk person help number" },
+  { group: "Support", title: "Having trouble charging?", detail: "Quick tip", url: "support.html#support-tip-charging", keywords: "charging charge battery cable adapter power not charging" },
+  { group: "Support", title: "Keep your software current", detail: "Quick tip", url: "support.html#support-tip-software", keywords: "software update ios macos ipados upgrade settings" },
+  { group: "Support", title: "Before service or setup", detail: "Quick tip", url: "support.html#support-tip-setup", keywords: "service setup repair backup back up apple account model number" },
+  { group: "Support", title: "Mac guide", detail: "Support · Specs and highlights", url: "support.html#support-mac", keywords: "mac macbook guide support help specs" },
+  { group: "Support", title: "iPad guide", detail: "Support · Specs and highlights", url: "support.html#support-ipad", keywords: "ipad guide support help specs" },
+  { group: "Support", title: "iPhone guide", detail: "Support · Specs and highlights", url: "support.html#support-iphone", keywords: "iphone guide support help specs" },
+  { group: "Support", title: "Help me choose a Mac", detail: "Answer a few questions", url: "Mac.html#mac-chooser-heading", keywords: "help choose quiz recommend which mac compare" },
+  { group: "Support", title: "Help me choose an iPad", detail: "Answer a few questions", url: "iPad.html#ipad-chooser-heading", keywords: "help choose quiz recommend which ipad compare" },
+  { group: "Support", title: "Help me choose an iPhone", detail: "Answer a few questions", url: "iPhone.html#iphone-chooser-heading", keywords: "help choose quiz recommend which iphone compare" },
+  { group: "Support", title: "Trade in and switch to Mac", detail: "Mac", url: "Mac.html#mac-switch-heading", keywords: "trade in trade-in switch windows pc move" },
+];
+const siteSearchGroups = ["Pages", "Products", "Support"];
+const siteSearchItem = searchInput?.closest(".search-item");
+
+if (searchInput instanceof HTMLInputElement && siteSearchItem instanceof HTMLElement) {
+  const suggestions = document.createElement("div");
+  suggestions.className = "search-suggestions";
+  suggestions.id = "search-suggestions";
+  suggestions.setAttribute("role", "listbox");
+  suggestions.setAttribute("aria-label", "Search suggestions");
+  suggestions.hidden = true;
+  siteSearchItem.append(suggestions);
+
+  searchInput.setAttribute("role", "combobox");
+  searchInput.setAttribute("aria-autocomplete", "list");
+  searchInput.setAttribute("aria-controls", suggestions.id);
+  searchInput.setAttribute("aria-expanded", "false");
+  searchInput.setAttribute("autocomplete", "off");
+
+  let visibleResults = [];
+  let bestResult;
+  let activeIndex = -1;
+
+  // Every typed word must start one of the item's title or keyword words ("pro" matches "Pro", not "product")
+  const scoreSearchItem = (item, query, words) => {
+    const title = item.title.toLowerCase();
+    const searchWords = `${title} ${item.keywords}`.split(/[\s'’·-]+/);
+    if (!words.every((word) => searchWords.some((searchWord) => searchWord.startsWith(word)))) {
+      return 0;
+    }
+    if (title === query) return 100;
+    if (title.startsWith(query)) return 80;
+    if (title.includes(query)) return 60;
+    return 30 + words.filter((word) => title.includes(word)).length * 5;
+  };
+
+  const findSearchResults = (rawQuery) => {
+    const query = rawQuery.trim().toLowerCase();
+    bestResult = undefined;
+    if (!query) {
+      // Empty box: offer the main pages as quick links
+      return siteSearchIndex.filter((item) => item.group === "Pages" && item.action !== "bag");
+    }
+    const words = query.split(/\s+/);
+    const scored = siteSearchIndex
+      .map((item) => ({ item, score: scoreSearchItem(item, query, words) }))
+      .filter((result) => result.score > 0)
+      .sort((a, b) => b.score - a.score);
+    bestResult = scored[0]?.item;
+    // Up to 4 per group, groups kept in a fixed order
+    return siteSearchGroups.flatMap((group) =>
+      scored.filter((result) => result.item.group === group).slice(0, 4).map((result) => result.item)
+    );
+  };
+
+  const setActiveSuggestion = (index) => {
+    activeIndex = index;
+    suggestions.querySelectorAll(".search-suggestion").forEach((option, optionIndex) => {
+      const isActive = optionIndex === activeIndex;
+      option.classList.toggle("is-active", isActive);
+      option.setAttribute("aria-selected", String(isActive));
+      if (isActive) {
+        searchInput.setAttribute("aria-activedescendant", option.id);
+        option.scrollIntoView({ block: "nearest" });
+      }
+    });
+    if (activeIndex < 0) {
+      searchInput.removeAttribute("aria-activedescendant");
+    }
+  };
+
+  const closeSuggestions = () => {
+    suggestions.hidden = true;
+    searchInput.setAttribute("aria-expanded", "false");
+    setActiveSuggestion(-1);
+  };
+
+  const renderSuggestions = () => {
+    const query = searchInput.value.trim();
+    visibleResults = findSearchResults(query);
+    suggestions.replaceChildren();
+
+    if (visibleResults.length === 0) {
+      const empty = document.createElement("p");
+      empty.className = "search-suggestions-empty";
+      empty.textContent = `No results for “${query}”. Try a product name like “iPhone” or a topic like “charging”.`;
+      suggestions.append(empty);
+    }
+
+    let lastGroup = "";
+    visibleResults.forEach((item, index) => {
+      const heading = query ? item.group : "Quick links";
+      if (heading !== lastGroup) {
+        const label = document.createElement("p");
+        label.className = "search-suggestions-group";
+        label.textContent = heading;
+        suggestions.append(label);
+        lastGroup = heading;
+      }
+
+      const option = document.createElement("a");
+      option.className = "search-suggestion";
+      option.id = `search-suggestion-${index}`;
+      option.href = item.url;
+      option.tabIndex = -1;
+      option.setAttribute("role", "option");
+      option.dataset.searchIndex = String(index);
+      const title = document.createElement("span");
+      title.className = "search-suggestion-title";
+      title.textContent = item.title;
+      const detail = document.createElement("span");
+      detail.className = "search-suggestion-detail";
+      detail.textContent = item.detail;
+      option.append(title, detail);
+      suggestions.append(option);
+    });
+
+    suggestions.hidden = false;
+    searchInput.setAttribute("aria-expanded", "true");
+    setActiveSuggestion(-1);
+  };
+
+  const openSearchResult = (item) => {
+    closeSuggestions();
+    searchInput.blur();
+    const bagButton = document.querySelector("[data-open-mac-bag]");
+    if (item.action === "bag" && bagButton instanceof HTMLButtonElement) {
+      bagButton.click();
+      return;
+    }
+    window.location.href = item.url;
+  };
+
+  searchInput.addEventListener("input", renderSuggestions);
+  searchInput.addEventListener("focus", renderSuggestions);
+  searchInput.addEventListener("keydown", (event) => {
+    const optionCount = visibleResults.length;
+    if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+      event.preventDefault();
+      if (suggestions.hidden) {
+        renderSuggestions();
+      }
+      if (optionCount > 0) {
+        const step = event.key === "ArrowDown" ? 1 : -1;
+        setActiveSuggestion((activeIndex + step + optionCount) % optionCount);
+      }
+    } else if (event.key === "Enter") {
+      event.preventDefault();
+      // Enter confirms: the highlighted suggestion, or the strongest match across all groups
+      const result = visibleResults[activeIndex] ?? bestResult;
+      if (result) {
+        openSearchResult(result);
+      } else {
+        renderSuggestions();
+      }
+    } else if (event.key === "Escape" && !suggestions.hidden) {
+      event.stopPropagation();
+      closeSuggestions();
+    }
+  });
+
+  // mousedown keeps focus in the box so the click below still lands
+  suggestions.addEventListener("mousedown", (event) => event.preventDefault());
+  suggestions.addEventListener("click", (event) => {
+    const option = event.target instanceof Element ? event.target.closest(".search-suggestion") : null;
+    const item = option ? visibleResults[Number(option.getAttribute("data-search-index"))] : undefined;
+    if (item) {
+      event.preventDefault();
+      openSearchResult(item);
+    }
+  });
+  suggestions.addEventListener("mousemove", (event) => {
+    const option = event.target instanceof Element ? event.target.closest(".search-suggestion") : null;
+    if (option) {
+      setActiveSuggestion(Number(option.getAttribute("data-search-index")));
+    }
+  });
+
+  document.addEventListener("click", (event) => {
+    if (event.target instanceof Node && !siteSearchItem.contains(event.target)) {
+      closeSuggestions();
+    }
+  });
+}
+
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
     navbar.classList.remove("menu-open", "search-open");
@@ -523,6 +746,300 @@ if (
   showMacStep(0);
 }
 
+// --- Product catalogue (used by the buy dialogs and the shopping bag on every page) ---
+// Each option group lists its choices with the price difference from the base price.
+const buyOption = (id, label, choices, layout = "grid") => ({
+  id,
+  label,
+  layout,
+  choices: choices.map(([name, price = 0]) => ({ name, price })),
+});
+const buyFinish = (name, color, image) => ({ name, color, image: `buy images/${image}.jpg` });
+
+const macBuyProducts = {
+  special: {
+    title: "Richard's Special Mac",
+    image: "images/C on MacBook.jpeg",
+    alt: "Richard's Special Mac, a one-of-a-kind hand-painted MacBook",
+    basePrice: 3999,
+    monthly: true,
+    // Dark, full-frame photo: shown edge to edge instead of on the grey product frame
+    fullBleed: true,
+    finishes: [],
+    options: [
+      buyOption("chip", "Chip", [
+        ["R1 Pro with 18-core CPU, 24-core GPU"],
+        ["R1 Max with 18-core CPU, 40-core GPU", 1000],
+      ], "list"),
+      buyOption("memory", "Memory", [["24GB"], ["48GB", 400], ["64GB", 600], ["128GB", 1600], ["256GB", 3600]]),
+      buyOption("storage", "Storage", [["512GB"], ["1TB", 200], ["2TB", 600], ["4TB", 1200], ["8TB", 2400]]),
+      buyOption("display", "Display", [
+        ["16-inch Tandem OLED Ultra Retina XDR, standard glass"],
+        ["16-inch Tandem OLED Ultra Retina XDR, nano-texture glass", 150],
+      ], "list"),
+      buyOption("adapter", "Power Adapter", [["140W USB-C Power Adapter"]], "list"),
+    ],
+  },
+  air: {
+    title: "MacBook Air",
+    image: "images/nav_mba.jpg",
+    alt: "MacBook Air",
+    basePrice: 1299,
+    monthly: true,
+    finishes: [
+      buyFinish("Sky blue", "#c4d9e0", "macbook-air-skyblue"),
+      buyFinish("Silver", "#e5e5e5", "macbook-air-silver"),
+      buyFinish("Starlight", "#f2e7d4", "macbook-air-starlight"),
+      buyFinish("Midnight", "#30343d", "macbook-air-midnight"),
+    ],
+    options: [
+      buyOption("size", "Size", [["13-inch"], ["15-inch", 200]]),
+      buyOption("chip", "Chip", [
+        ["M5 with 10-core CPU, 8-core GPU"],
+        ["M5 with 10-core CPU, 10-core GPU", 100],
+      ], "list"),
+      buyOption("memory", "Memory", [["16GB"], ["24GB", 200], ["32GB", 400]]),
+      buyOption("storage", "Storage", [["256GB"], ["512GB", 200], ["1TB", 400], ["2TB", 800]]),
+      buyOption("adapter", "Power Adapter", [
+        ["30W USB-C Power Adapter"],
+        ["35W Dual USB-C Port Compact Power Adapter", 20],
+        ["70W USB-C Power Adapter", 40],
+      ], "list"),
+    ],
+  },
+  pro: {
+    title: "MacBook Pro",
+    image: "images/nav_mbp.jpg",
+    alt: "MacBook Pro",
+    basePrice: 1999,
+    monthly: true,
+    finishes: [
+      buyFinish("Space black", "#25272c", "macbook-pro-spaceblack"),
+      buyFinish("Silver", "#e5e5e5", "macbook-pro-silver"),
+    ],
+    options: [
+      buyOption("size", "Size", [["14-inch"], ["16-inch", 500]]),
+      buyOption("chip", "Chip", [
+        ["M5 with 10-core CPU, 10-core GPU"],
+        ["M5 Pro with 18-core CPU, 20-core GPU", 400],
+        ["M5 Max with 18-core CPU, 32-core GPU", 1200],
+        ["M5 Max with 18-core CPU, 40-core GPU", 1500],
+      ], "list"),
+      buyOption("memory", "Memory", [["16GB"], ["24GB", 200], ["48GB", 600], ["64GB", 1000]]),
+      buyOption("storage", "Storage", [["512GB"], ["1TB", 200], ["2TB", 600], ["4TB", 1200]]),
+      buyOption("adapter", "Power Adapter", [
+        ["70W USB-C Power Adapter"],
+        ["96W USB-C Power Adapter", 20],
+        ["140W USB-C Power Adapter", 40],
+      ], "list"),
+    ],
+  },
+  neo: {
+    title: "MacBook Neo",
+    image: "why mac images/nav_mbn.jpg",
+    alt: "MacBook Neo",
+    basePrice: 699,
+    monthly: true,
+    finishes: [
+      buyFinish("Silver", "#e3e4e5", "macbook-neo-silver"),
+      buyFinish("Blush", "#f2c3c9", "macbook-neo-blush"),
+      buyFinish("Citrus", "#e9df76", "macbook-neo-citrus"),
+      buyFinish("Indigo", "#4b5a8a", "macbook-neo-indigo"),
+    ],
+    options: [
+      buyOption("chip", "Chip", [
+        ["6-core CPU, 5-core GPU"],
+        ["6-core CPU, 6-core GPU", 100],
+      ], "list"),
+      buyOption("memory", "Memory", [["8GB"], ["16GB", 200]]),
+      buyOption("storage", "Storage", [["256GB"], ["512GB", 200], ["1TB", 400]]),
+      buyOption("adapter", "Power Adapter", [
+        ["20W USB-C Power Adapter"],
+        ["30W USB-C Power Adapter", 20],
+      ], "list"),
+    ],
+  },
+  ipad: {
+    title: "iPad",
+    image: "Ipad images/nav_ipad.png",
+    alt: "iPad",
+    basePrice: 349,
+    finishes: [
+      buyFinish("Blue", "#9bb7d4", "ipad-blue"),
+      buyFinish("Pink", "#edc6c5", "ipad-pink"),
+      buyFinish("Silver", "#e5e5e5", "ipad-silver"),
+      buyFinish("Yellow", "#efe6a2", "ipad-yellow"),
+    ],
+    options: [
+      buyOption("storage", "Storage", [["128GB"], ["256GB", 100], ["512GB", 300]]),
+    ],
+  },
+  "ipad-air": {
+    title: "iPad Air",
+    image: "Ipad images/nav_ipad_air.png",
+    alt: "iPad Air",
+    basePrice: 599,
+    finishes: [
+      buyFinish("Blue", "#9bb7d4", "ipad-air-blue"),
+      buyFinish("Purple", "#a879e8", "ipad-air-purple"),
+      buyFinish("Starlight", "#f2e7d4", "ipad-air-starlight"),
+      buyFinish("Space gray", "#77777b", "ipad-air-spacegray"),
+    ],
+    options: [
+      buyOption("size", "Size", [["11-inch"], ["13-inch", 200]]),
+      buyOption("storage", "Storage", [["128GB"], ["256GB", 100], ["512GB", 300], ["1TB", 500]]),
+    ],
+  },
+  "ipad-mini": {
+    title: "iPad mini",
+    image: "Ipad images/nav_ipad_mini.png",
+    alt: "iPad mini",
+    basePrice: 499,
+    finishes: [
+      buyFinish("Blue", "#9bb7d4", "ipad-mini-blue"),
+      buyFinish("Purple", "#a879e8", "ipad-mini-purple"),
+      buyFinish("Starlight", "#f2e7d4", "ipad-mini-starlight"),
+      buyFinish("Space gray", "#77777b", "ipad-mini-spacegray"),
+    ],
+    options: [
+      buyOption("storage", "Storage", [["128GB"], ["256GB", 100], ["512GB", 300]]),
+    ],
+  },
+  "ipad-pro": {
+    title: "iPad Pro",
+    image: "Ipad images/nav_ipad_pro.png",
+    alt: "iPad Pro",
+    basePrice: 999,
+    finishes: [
+      buyFinish("Space black", "#25272c", "ipad-pro-spaceblack"),
+      buyFinish("Silver", "#e5e5e5", "ipad-pro-silver"),
+    ],
+    options: [
+      buyOption("size", "Size", [["11-inch"], ["13-inch", 300]]),
+      buyOption("storage", "Storage", [["256GB"], ["512GB", 200], ["1TB", 600], ["2TB", 1000]]),
+    ],
+  },
+  "apple-pencil": {
+    title: "Apple Pencil",
+    image: "why ipad images/Apple Pencile.png",
+    alt: "Apple Pencil with an iPad displaying colorful notes",
+    basePrice: 129,
+    finishes: [],
+    options: [],
+  },
+  "magic-keyboard": {
+    title: "Magic Keyboard",
+    image: "why ipad images/Magic keyboard.png",
+    alt: "Magic Keyboard connected to an iPad",
+    basePrice: 349,
+    finishes: [],
+    options: [],
+  },
+  "iphone-duo": {
+    title: "iPhone Duo",
+    image: "iPhone images/nav_iphone_duo.jpg",
+    alt: "iPhone Duo",
+    basePrice: 1999,
+    finishes: [
+      buyFinish("Night sky", "#2b2f3a", "iphone-duo-night-sky"),
+      buyFinish("Star white", "#efede6", "iphone-duo-star-white"),
+    ],
+    options: [
+      buyOption("storage", "Storage", [["256GB"], ["512GB", 200], ["1TB", 400]]),
+    ],
+  },
+  "iphone-18-pro": {
+    title: "iPhone 18 Pro",
+    image: "iPhone images/nav_iphone_18_pro.jpg",
+    alt: "iPhone 18 Pro",
+    basePrice: 1099,
+    finishes: [
+      buyFinish("Burgundy", "#6b2a37", "iphone-18-pro-burgundy"),
+      buyFinish("Glacier", "#c9dbe6", "iphone-18-pro-glacier"),
+      buyFinish("Silver", "#e5e5e5", "iphone-18-pro-silver"),
+      buyFinish("Black", "#25272c", "iphone-18-pro-black"),
+    ],
+    options: [
+      buyOption("size", "Size", [["6.3-inch"], ["6.9-inch", 100]]),
+      buyOption("storage", "Storage", [["256GB"], ["512GB", 200], ["1TB", 400], ["2TB", 800]]),
+    ],
+  },
+  "iphone-air": {
+    title: "iPhone Air",
+    image: "iPhone images/nav_iphone_air.jpg",
+    alt: "iPhone Air",
+    basePrice: 999,
+    finishes: [
+      buyFinish("Sky blue", "#c4d9e0", "iphone-air-skyblue"),
+      buyFinish("Light gold", "#eadcc0", "iphone-air-lightgold"),
+      buyFinish("Cloud white", "#f4f4f0", "iphone-air-cloudwhite"),
+      buyFinish("Space black", "#25272c", "iphone-air-spaceblack"),
+    ],
+    options: [
+      buyOption("storage", "Storage", [["256GB"], ["512GB", 200], ["1TB", 400]]),
+    ],
+  },
+  "iphone-17": {
+    title: "iPhone 17",
+    image: "iPhone images/nav_iphone_17.jpg",
+    alt: "iPhone 17",
+    basePrice: 799,
+    finishes: [
+      buyFinish("Lavender", "#d8c8ea", "iphone-17-lavender"),
+      buyFinish("Mist blue", "#a9bccd", "iphone-17-mistblue"),
+      buyFinish("Sage", "#b4bea2", "iphone-17-sage"),
+      buyFinish("White", "#f5f5f5", "iphone-17-white"),
+      buyFinish("Black", "#2f3033", "iphone-17-black"),
+    ],
+    options: [
+      buyOption("storage", "Storage", [["256GB"], ["512GB", 200]]),
+    ],
+  },
+  "iphone-17e": {
+    title: "iPhone 17e",
+    image: "iPhone images/nav_iphone_17e.jpg",
+    alt: "iPhone 17e",
+    basePrice: 599,
+    finishes: [
+      buyFinish("Soft pink", "#f2d4d6", "iphone-17e-softpink"),
+      buyFinish("White", "#f5f5f5", "iphone-17e-white"),
+      buyFinish("Black", "#2f3033", "iphone-17e-black"),
+    ],
+    options: [
+      buyOption("storage", "Storage", [["256GB"], ["512GB", 200]]),
+    ],
+  },
+  "magsafe-charger": {
+    title: "MagSafe Charger",
+    image: "why iphone images/MagSafe.jpg",
+    alt: "iPhone models with a MagSafe charger, wallet, and case",
+    basePrice: 49,
+    finishes: [],
+    options: [],
+  },
+  airpods: {
+    title: "AirPods",
+    image: "why iphone images/AirPods product.jpg",
+    alt: "AirPods in their open charging case",
+    basePrice: 179,
+    finishes: [],
+    options: [],
+  },
+};
+
+const formatBuyPrice = (amount) =>
+  new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(amount);
+const formatBuyPriceDelta = (amount) => (amount > 0 ? `+ ${formatBuyPrice(amount)}` : "");
+const getBuyConfigPrice = (product, options) => product.options.reduce((total, group) => {
+  const choice = group.choices.find((item) => item.name === options[group.id]);
+  return total + (choice ? choice.price : 0);
+}, product.basePrice);
+const getBuyFinishImage = (product, finishName) =>
+  product.finishes.find((finish) => finish.name === finishName)?.image ?? product.image;
+const getBuyImageAlt = (product, finishName) => (finishName ? `${product.title} in ${finishName}` : product.alt);
+const getBuyDefaultOptions = (product) =>
+  Object.fromEntries(product.options.map((group) => [group.id, group.choices[0].name]));
+
 const macBuyDialog = document.querySelector(".mac-buy-dialog");
 const macBuyButtons = Array.from(document.querySelectorAll("[data-buy-mac]"));
 const macBuyTitle = document.querySelector("[data-mac-buy-title]");
@@ -538,6 +1055,287 @@ const macBuyContent = document.querySelector("[data-mac-buy-content]");
 const macBuyConfirmation = document.querySelector("[data-mac-buy-confirmation]");
 const macBuySummary = document.querySelector("[data-mac-buy-summary]");
 
+// --- Shopping bag: works on any page that includes the bag dialog markup ---
+let addMacToBag;
+const macBagItems = [];
+const macBagStorageKey = "richard-llc-shopping-bag";
+const macBagDialog = document.querySelector("[data-mac-bag-dialog]");
+const openMacBagButton = document.querySelector("[data-open-mac-bag]");
+const macBagCount = document.querySelector("[data-mac-bag-count]");
+const macBagItemsContainer = document.querySelector("[data-mac-bag-items]");
+const macBagEmptyMessage = document.querySelector("[data-mac-bag-empty]");
+const macBagSummary = document.querySelector("[data-mac-bag-summary]");
+const macBagSubtotal = document.querySelector("[data-mac-bag-subtotal]");
+const macBagCheckoutButton = document.querySelector("[data-mac-bag-checkout]");
+const macBagCheckoutMessage = document.querySelector("[data-mac-bag-checkout-message]");
+const macBagStorageMessage = document.querySelector("[data-mac-bag-storage-message]");
+const viewMacBagButton = document.querySelector("[data-view-mac-bag]");
+
+if (
+  macBagDialog instanceof HTMLDialogElement &&
+  openMacBagButton instanceof HTMLButtonElement &&
+  macBagCount instanceof HTMLElement &&
+  macBagItemsContainer instanceof HTMLElement &&
+  macBagEmptyMessage instanceof HTMLElement &&
+  macBagStorageMessage instanceof HTMLElement &&
+  macBagSummary instanceof HTMLElement &&
+  macBagSubtotal instanceof HTMLElement &&
+  macBagCheckoutButton instanceof HTMLButtonElement &&
+  macBagCheckoutMessage instanceof HTMLElement
+) {
+  let macBagStorageError = "";
+
+  // Fills in any missing or outdated choice (e.g. bags saved before specs existed) with the default.
+  const normalizeBagOptions = (product, savedOptions, legacySize) => {
+    const options = getBuyDefaultOptions(product);
+    product.options.forEach((group) => {
+      const saved = savedOptions?.[group.id] ?? (group.id === "size" ? legacySize : undefined);
+      if (group.choices.some((choice) => choice.name === saved)) {
+        options[group.id] = saved;
+      }
+    });
+    return options;
+  };
+
+  const parseMacBag = (serializedBag) => {
+    const parsedBag = JSON.parse(serializedBag);
+    if (!Array.isArray(parsedBag)) {
+      throw new Error("The saved shopping bag has an invalid format.");
+    }
+
+    return parsedBag.map((item) => {
+      if (!item || typeof item !== "object" || typeof item.productKey !== "string") {
+        throw new Error("The saved shopping bag contains an invalid item.");
+      }
+      const product = macBuyProducts[item.productKey];
+      if (
+        !product ||
+        typeof item.finish !== "string" ||
+        (item.options !== undefined && (typeof item.options !== "object" || item.options === null)) ||
+        !Number.isSafeInteger(item.quantity) ||
+        item.quantity < 1
+      ) {
+        throw new Error("The saved shopping bag contains an invalid item.");
+      }
+
+      const finish = product.finishes.some((option) => option.name === item.finish)
+        ? item.finish
+        : product.finishes[0]?.name ?? "";
+
+      return {
+        productKey: item.productKey,
+        product,
+        finish,
+        options: normalizeBagOptions(product, item.options, item.size),
+        quantity: item.quantity,
+      };
+    });
+  };
+
+  const loadMacBag = () => {
+    try {
+      const serializedBag = window.localStorage.getItem(macBagStorageKey);
+      macBagItems.splice(0, macBagItems.length, ...(serializedBag ? parseMacBag(serializedBag) : []));
+      macBagStorageError = "";
+    } catch (error) {
+      macBagItems.splice(0);
+      macBagStorageError = error instanceof Error
+        ? `Your saved bag couldn't be loaded: ${error.message}`
+        : "Your saved bag couldn't be loaded.";
+    }
+  };
+
+  const saveMacBag = () => {
+    try {
+      window.localStorage.setItem(macBagStorageKey, JSON.stringify(macBagItems.map((item) => ({
+        productKey: item.productKey,
+        finish: item.finish,
+        options: item.options,
+        quantity: item.quantity,
+      }))));
+      macBagStorageError = "";
+    } catch (error) {
+      macBagStorageError = error instanceof Error
+        ? `Your bag couldn't be saved on this device: ${error.message}`
+        : "Your bag couldn't be saved on this device.";
+    }
+  };
+
+  const createBagQuantityButton = (label, action, disabled = false) => {
+    const button = document.createElement("button");
+    button.className = "mac-bag-quantity-button";
+    button.type = "button";
+    button.textContent = label;
+    button.setAttribute("aria-label", action === "increase" ? "Increase quantity" : "Decrease quantity");
+    button.dataset.bagAction = action;
+    button.disabled = disabled;
+    return button;
+  };
+
+  const renderMacBag = () => {
+    const totalQuantity = macBagItems.reduce((total, item) => total + item.quantity, 0);
+    openMacBagButton.setAttribute(
+      "aria-label",
+      `Shopping bag, ${totalQuantity} ${totalQuantity === 1 ? "item" : "items"}`,
+    );
+    macBagCount.textContent = String(totalQuantity);
+    macBagCount.hidden = totalQuantity === 0;
+    macBagItemsContainer.replaceChildren();
+    macBagEmptyMessage.hidden = totalQuantity !== 0;
+    macBagSummary.hidden = totalQuantity === 0;
+    macBagCheckoutMessage.hidden = true;
+    macBagStorageMessage.textContent = macBagStorageError;
+    macBagStorageMessage.hidden = !macBagStorageError;
+
+    let subtotal = 0;
+    macBagItems.forEach((item, index) => {
+      const unitPrice = getBuyConfigPrice(item.product, item.options);
+      const article = document.createElement("article");
+      article.className = "mac-bag-item";
+
+      const image = document.createElement("img");
+      image.className = "mac-bag-item-image";
+      image.classList.toggle("is-full-bleed", Boolean(item.product.fullBleed));
+      image.src = getBuyFinishImage(item.product, item.finish);
+      image.alt = getBuyImageAlt(item.product, item.finish);
+
+      const details = document.createElement("div");
+      details.className = "mac-bag-item-details";
+      const title = document.createElement("h3");
+      title.textContent = item.product.title;
+      details.append(title);
+
+      const specLines = [
+        ...(item.finish ? [`Finish: ${item.finish}`] : []),
+        ...item.product.options.map((group) => `${group.label}: ${item.options[group.id]}`),
+      ];
+      specLines.forEach((line) => {
+        const spec = document.createElement("p");
+        spec.textContent = line;
+        details.append(spec);
+      });
+
+      const price = document.createElement("p");
+      price.className = "mac-bag-item-price";
+      price.textContent = `${formatBuyPrice(unitPrice)} each`;
+      details.append(price);
+
+      const controls = document.createElement("div");
+      controls.className = "mac-bag-item-controls";
+      const quantity = document.createElement("span");
+      quantity.className = "mac-bag-quantity";
+      quantity.textContent = String(item.quantity);
+      quantity.setAttribute("aria-label", "Quantity");
+      const remove = document.createElement("button");
+      remove.className = "mac-bag-remove";
+      remove.type = "button";
+      remove.textContent = "Remove";
+      remove.setAttribute("aria-label", `Remove ${item.product.title} from bag`);
+      remove.dataset.bagAction = "remove";
+      remove.dataset.bagIndex = String(index);
+      const decrease = createBagQuantityButton("−", "decrease", item.quantity === 1);
+      decrease.dataset.bagIndex = String(index);
+      const increase = createBagQuantityButton("+", "increase");
+      increase.dataset.bagIndex = String(index);
+      controls.append(decrease, quantity, increase, remove);
+      details.append(controls);
+
+      const itemSubtotal = document.createElement("p");
+      itemSubtotal.className = "mac-bag-item-price";
+      itemSubtotal.textContent = formatBuyPrice(unitPrice * item.quantity);
+
+      article.append(image, details, itemSubtotal);
+      macBagItemsContainer.append(article);
+      subtotal += unitPrice * item.quantity;
+    });
+
+    macBagSubtotal.textContent = formatBuyPrice(subtotal);
+  };
+
+  addMacToBag = (productKey, product, finish, options) => {
+    const sameOptions = (a, b) => product.options.every((group) => a[group.id] === b[group.id]);
+    const existingItem = macBagItems.find((item) =>
+      item.productKey === productKey && item.finish === finish && sameOptions(item.options, options)
+    );
+
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      macBagItems.push({ productKey, product, finish, options, quantity: 1 });
+    }
+
+    saveMacBag();
+    renderMacBag();
+  };
+
+  const openMacBag = () => {
+    renderMacBag();
+    macBagDialog.showModal();
+    macBagDialog.querySelector("[data-close-mac-bag]")?.focus();
+  };
+
+  openMacBagButton.addEventListener("click", openMacBag);
+  if (viewMacBagButton instanceof HTMLButtonElement) {
+    viewMacBagButton.addEventListener("click", () => {
+      if (macBuyDialog instanceof HTMLDialogElement) {
+        macBuyDialog.close();
+      }
+      openMacBag();
+    });
+  }
+  macBagDialog.querySelectorAll("[data-close-mac-bag]").forEach((button) => {
+    button.addEventListener("click", () => macBagDialog.close());
+  });
+  macBagDialog.addEventListener("click", (event) => {
+    if (event.target === macBagDialog) {
+      macBagDialog.close();
+    }
+  });
+  macBagItemsContainer.addEventListener("click", (event) => {
+    if (!(event.target instanceof Element)) {
+      return;
+    }
+
+    const button = event.target.closest("button[data-bag-action]");
+    const index = Number(button?.dataset.bagIndex);
+    const item = macBagItems[index];
+    if (!button || !item) {
+      return;
+    }
+
+    switch (button.dataset.bagAction) {
+      case "increase":
+        item.quantity += 1;
+        break;
+      case "decrease":
+        item.quantity = Math.max(1, item.quantity - 1);
+        break;
+      case "remove":
+        macBagItems.splice(index, 1);
+        break;
+    }
+
+    saveMacBag();
+    renderMacBag();
+  });
+  window.addEventListener("storage", (event) => {
+    if (event.key === macBagStorageKey || event.key === null) {
+      loadMacBag();
+      renderMacBag();
+    }
+  });
+  macBagCheckoutButton.addEventListener("click", () => {
+    macBagCheckoutMessage.textContent = "Checkout is a demo and isn't connected to a payment service.";
+    macBagCheckoutMessage.hidden = false;
+  });
+  loadMacBag();
+  renderMacBag();
+  if (window.location.hash === "#shopping-bag") {
+    openMacBag();
+  }
+}
+
+// --- Buy dialogs (product pages) ---
 if (
   macBuyDialog instanceof HTMLDialogElement &&
   macBuyButtons.length > 0 &&
@@ -552,587 +1350,10 @@ if (
   macBuyForm instanceof HTMLFormElement &&
   macBuyContent instanceof HTMLElement &&
   macBuyConfirmation instanceof HTMLElement &&
-  macBuySummary instanceof HTMLElement &&
-  document.querySelector("[data-mac-bag-dialog]") instanceof HTMLDialogElement &&
-  document.querySelector("[data-open-mac-bag]") instanceof HTMLButtonElement &&
-  document.querySelector("[data-mac-bag-count]") instanceof HTMLElement &&
-  document.querySelector("[data-mac-bag-items]") instanceof HTMLElement &&
-  document.querySelector("[data-mac-bag-empty]") instanceof HTMLElement &&
-  document.querySelector("[data-mac-bag-summary]") instanceof HTMLElement &&
-  document.querySelector("[data-mac-bag-subtotal]") instanceof HTMLElement &&
-  document.querySelector("[data-mac-bag-checkout]") instanceof HTMLButtonElement &&
-  document.querySelector("[data-mac-bag-checkout-message]") instanceof HTMLElement &&
-  document.querySelector("[data-view-mac-bag]") instanceof HTMLButtonElement
+  macBuySummary instanceof HTMLElement
 ) {
-  // Each option group lists its choices with the price difference from the base price.
-  const buyOption = (id, label, choices, layout = "grid") => ({
-    id,
-    label,
-    layout,
-    choices: choices.map(([name, price = 0]) => ({ name, price })),
-  });
-  const buyFinish = (name, color, image) => ({ name, color, image: `buy images/${image}.jpg` });
-
-  const macBuyProducts = {
-    special: {
-      title: "Richard's Special Mac",
-      image: "images/C on MacBook.jpeg",
-      alt: "Richard's Special Mac, a one-of-a-kind hand-painted MacBook",
-      basePrice: 3999,
-      monthly: true,
-      // Dark, full-frame photo: shown edge to edge instead of on the grey product frame
-      fullBleed: true,
-      finishes: [],
-      options: [
-        buyOption("chip", "Chip", [
-          ["R1 Pro with 18-core CPU, 24-core GPU"],
-          ["R1 Max with 18-core CPU, 40-core GPU", 1000],
-        ], "list"),
-        buyOption("memory", "Memory", [["24GB"], ["48GB", 400], ["64GB", 600], ["128GB", 1600], ["256GB", 3600]]),
-        buyOption("storage", "Storage", [["512GB"], ["1TB", 200], ["2TB", 600], ["4TB", 1200], ["8TB", 2400]]),
-        buyOption("display", "Display", [
-          ["16-inch Tandem OLED Ultra Retina XDR, standard glass"],
-          ["16-inch Tandem OLED Ultra Retina XDR, nano-texture glass", 150],
-        ], "list"),
-        buyOption("adapter", "Power Adapter", [["140W USB-C Power Adapter"]], "list"),
-      ],
-    },
-    air: {
-      title: "MacBook Air",
-      image: "images/nav_mba.jpg",
-      alt: "MacBook Air",
-      basePrice: 1299,
-      monthly: true,
-      finishes: [
-        buyFinish("Sky blue", "#c4d9e0", "macbook-air-skyblue"),
-        buyFinish("Silver", "#e5e5e5", "macbook-air-silver"),
-        buyFinish("Starlight", "#f2e7d4", "macbook-air-starlight"),
-        buyFinish("Midnight", "#30343d", "macbook-air-midnight"),
-      ],
-      options: [
-        buyOption("size", "Size", [["13-inch"], ["15-inch", 200]]),
-        buyOption("chip", "Chip", [
-          ["M5 with 10-core CPU, 8-core GPU"],
-          ["M5 with 10-core CPU, 10-core GPU", 100],
-        ], "list"),
-        buyOption("memory", "Memory", [["16GB"], ["24GB", 200], ["32GB", 400]]),
-        buyOption("storage", "Storage", [["256GB"], ["512GB", 200], ["1TB", 400], ["2TB", 800]]),
-        buyOption("adapter", "Power Adapter", [
-          ["30W USB-C Power Adapter"],
-          ["35W Dual USB-C Port Compact Power Adapter", 20],
-          ["70W USB-C Power Adapter", 40],
-        ], "list"),
-      ],
-    },
-    pro: {
-      title: "MacBook Pro",
-      image: "images/nav_mbp.jpg",
-      alt: "MacBook Pro",
-      basePrice: 1999,
-      monthly: true,
-      finishes: [
-        buyFinish("Space black", "#25272c", "macbook-pro-spaceblack"),
-        buyFinish("Silver", "#e5e5e5", "macbook-pro-silver"),
-      ],
-      options: [
-        buyOption("size", "Size", [["14-inch"], ["16-inch", 500]]),
-        buyOption("chip", "Chip", [
-          ["M5 with 10-core CPU, 10-core GPU"],
-          ["M5 Pro with 18-core CPU, 20-core GPU", 400],
-          ["M5 Max with 18-core CPU, 32-core GPU", 1200],
-          ["M5 Max with 18-core CPU, 40-core GPU", 1500],
-        ], "list"),
-        buyOption("memory", "Memory", [["16GB"], ["24GB", 200], ["48GB", 600], ["64GB", 1000]]),
-        buyOption("storage", "Storage", [["512GB"], ["1TB", 200], ["2TB", 600], ["4TB", 1200]]),
-        buyOption("adapter", "Power Adapter", [
-          ["70W USB-C Power Adapter"],
-          ["96W USB-C Power Adapter", 20],
-          ["140W USB-C Power Adapter", 40],
-        ], "list"),
-      ],
-    },
-    neo: {
-      title: "MacBook Neo",
-      image: "why mac images/nav_mbn.jpg",
-      alt: "MacBook Neo",
-      basePrice: 699,
-      monthly: true,
-      finishes: [
-        buyFinish("Silver", "#e3e4e5", "macbook-neo-silver"),
-        buyFinish("Blush", "#f2c3c9", "macbook-neo-blush"),
-        buyFinish("Citrus", "#e9df76", "macbook-neo-citrus"),
-        buyFinish("Indigo", "#4b5a8a", "macbook-neo-indigo"),
-      ],
-      options: [
-        buyOption("chip", "Chip", [
-          ["6-core CPU, 5-core GPU"],
-          ["6-core CPU, 6-core GPU", 100],
-        ], "list"),
-        buyOption("memory", "Memory", [["8GB"], ["16GB", 200]]),
-        buyOption("storage", "Storage", [["256GB"], ["512GB", 200], ["1TB", 400]]),
-        buyOption("adapter", "Power Adapter", [
-          ["20W USB-C Power Adapter"],
-          ["30W USB-C Power Adapter", 20],
-        ], "list"),
-      ],
-    },
-    ipad: {
-      title: "iPad",
-      image: "Ipad images/nav_ipad.png",
-      alt: "iPad",
-      basePrice: 349,
-      finishes: [
-        buyFinish("Blue", "#9bb7d4", "ipad-blue"),
-        buyFinish("Pink", "#edc6c5", "ipad-pink"),
-        buyFinish("Silver", "#e5e5e5", "ipad-silver"),
-        buyFinish("Yellow", "#efe6a2", "ipad-yellow"),
-      ],
-      options: [
-        buyOption("storage", "Storage", [["128GB"], ["256GB", 100], ["512GB", 300]]),
-      ],
-    },
-    "ipad-air": {
-      title: "iPad Air",
-      image: "Ipad images/nav_ipad_air.png",
-      alt: "iPad Air",
-      basePrice: 599,
-      finishes: [
-        buyFinish("Blue", "#9bb7d4", "ipad-air-blue"),
-        buyFinish("Purple", "#a879e8", "ipad-air-purple"),
-        buyFinish("Starlight", "#f2e7d4", "ipad-air-starlight"),
-        buyFinish("Space gray", "#77777b", "ipad-air-spacegray"),
-      ],
-      options: [
-        buyOption("size", "Size", [["11-inch"], ["13-inch", 200]]),
-        buyOption("storage", "Storage", [["128GB"], ["256GB", 100], ["512GB", 300], ["1TB", 500]]),
-      ],
-    },
-    "ipad-mini": {
-      title: "iPad mini",
-      image: "Ipad images/nav_ipad_mini.png",
-      alt: "iPad mini",
-      basePrice: 499,
-      finishes: [
-        buyFinish("Blue", "#9bb7d4", "ipad-mini-blue"),
-        buyFinish("Purple", "#a879e8", "ipad-mini-purple"),
-        buyFinish("Starlight", "#f2e7d4", "ipad-mini-starlight"),
-        buyFinish("Space gray", "#77777b", "ipad-mini-spacegray"),
-      ],
-      options: [
-        buyOption("storage", "Storage", [["128GB"], ["256GB", 100], ["512GB", 300]]),
-      ],
-    },
-    "ipad-pro": {
-      title: "iPad Pro",
-      image: "Ipad images/nav_ipad_pro.png",
-      alt: "iPad Pro",
-      basePrice: 999,
-      finishes: [
-        buyFinish("Space black", "#25272c", "ipad-pro-spaceblack"),
-        buyFinish("Silver", "#e5e5e5", "ipad-pro-silver"),
-      ],
-      options: [
-        buyOption("size", "Size", [["11-inch"], ["13-inch", 300]]),
-        buyOption("storage", "Storage", [["256GB"], ["512GB", 200], ["1TB", 600], ["2TB", 1000]]),
-      ],
-    },
-    "apple-pencil": {
-      title: "Apple Pencil",
-      image: "why ipad images/Apple Pencile.png",
-      alt: "Apple Pencil with an iPad displaying colorful notes",
-      basePrice: 129,
-      finishes: [],
-      options: [],
-    },
-    "magic-keyboard": {
-      title: "Magic Keyboard",
-      image: "why ipad images/Magic keyboard.png",
-      alt: "Magic Keyboard connected to an iPad",
-      basePrice: 349,
-      finishes: [],
-      options: [],
-    },
-    "iphone-duo": {
-      title: "iPhone Duo",
-      image: "iPhone images/nav_iphone_duo.jpg",
-      alt: "iPhone Duo",
-      basePrice: 1999,
-      finishes: [
-        buyFinish("Night sky", "#2b2f3a", "iphone-duo-night-sky"),
-        buyFinish("Star white", "#efede6", "iphone-duo-star-white"),
-      ],
-      options: [
-        buyOption("storage", "Storage", [["256GB"], ["512GB", 200], ["1TB", 400]]),
-      ],
-    },
-    "iphone-18-pro": {
-      title: "iPhone 18 Pro",
-      image: "iPhone images/nav_iphone_18_pro.jpg",
-      alt: "iPhone 18 Pro",
-      basePrice: 1099,
-      finishes: [
-        buyFinish("Burgundy", "#6b2a37", "iphone-18-pro-burgundy"),
-        buyFinish("Glacier", "#c9dbe6", "iphone-18-pro-glacier"),
-        buyFinish("Silver", "#e5e5e5", "iphone-18-pro-silver"),
-        buyFinish("Black", "#25272c", "iphone-18-pro-black"),
-      ],
-      options: [
-        buyOption("size", "Size", [["6.3-inch"], ["6.9-inch", 100]]),
-        buyOption("storage", "Storage", [["256GB"], ["512GB", 200], ["1TB", 400], ["2TB", 800]]),
-      ],
-    },
-    "iphone-air": {
-      title: "iPhone Air",
-      image: "iPhone images/nav_iphone_air.jpg",
-      alt: "iPhone Air",
-      basePrice: 999,
-      finishes: [
-        buyFinish("Sky blue", "#c4d9e0", "iphone-air-skyblue"),
-        buyFinish("Light gold", "#eadcc0", "iphone-air-lightgold"),
-        buyFinish("Cloud white", "#f4f4f0", "iphone-air-cloudwhite"),
-        buyFinish("Space black", "#25272c", "iphone-air-spaceblack"),
-      ],
-      options: [
-        buyOption("storage", "Storage", [["256GB"], ["512GB", 200], ["1TB", 400]]),
-      ],
-    },
-    "iphone-17": {
-      title: "iPhone 17",
-      image: "iPhone images/nav_iphone_17.jpg",
-      alt: "iPhone 17",
-      basePrice: 799,
-      finishes: [
-        buyFinish("Lavender", "#d8c8ea", "iphone-17-lavender"),
-        buyFinish("Mist blue", "#a9bccd", "iphone-17-mistblue"),
-        buyFinish("Sage", "#b4bea2", "iphone-17-sage"),
-        buyFinish("White", "#f5f5f5", "iphone-17-white"),
-        buyFinish("Black", "#2f3033", "iphone-17-black"),
-      ],
-      options: [
-        buyOption("storage", "Storage", [["256GB"], ["512GB", 200]]),
-      ],
-    },
-    "iphone-17e": {
-      title: "iPhone 17e",
-      image: "iPhone images/nav_iphone_17e.jpg",
-      alt: "iPhone 17e",
-      basePrice: 599,
-      finishes: [
-        buyFinish("Soft pink", "#f2d4d6", "iphone-17e-softpink"),
-        buyFinish("White", "#f5f5f5", "iphone-17e-white"),
-        buyFinish("Black", "#2f3033", "iphone-17e-black"),
-      ],
-      options: [
-        buyOption("storage", "Storage", [["256GB"], ["512GB", 200]]),
-      ],
-    },
-    "magsafe-charger": {
-      title: "MagSafe Charger",
-      image: "why iphone images/MagSafe.jpg",
-      alt: "iPhone models with a MagSafe charger, wallet, and case",
-      basePrice: 49,
-      finishes: [],
-      options: [],
-    },
-    airpods: {
-      title: "AirPods",
-      image: "why iphone images/AirPods product.jpg",
-      alt: "AirPods in their open charging case",
-      basePrice: 179,
-      finishes: [],
-      options: [],
-    },
-  };
-
-  const formatBuyPrice = (amount) =>
-    new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(amount);
-  const formatBuyPriceDelta = (amount) => (amount > 0 ? `+ ${formatBuyPrice(amount)}` : "");
-  const getBuyConfigPrice = (product, options) => product.options.reduce((total, group) => {
-    const choice = group.choices.find((item) => item.name === options[group.id]);
-    return total + (choice ? choice.price : 0);
-  }, product.basePrice);
-  const getBuyFinishImage = (product, finishName) =>
-    product.finishes.find((finish) => finish.name === finishName)?.image ?? product.image;
-  const getBuyImageAlt = (product, finishName) => (finishName ? `${product.title} in ${finishName}` : product.alt);
-  const getBuyDefaultOptions = (product) =>
-    Object.fromEntries(product.options.map((group) => [group.id, group.choices[0].name]));
   let activeMacBuyProduct;
   let activeMacBuyProductKey;
-  let addMacToBag;
-  const macBagItems = [];
-  const macBagStorageKey = "richard-llc-shopping-bag";
-  const macBagDialog = document.querySelector("[data-mac-bag-dialog]");
-  const openMacBagButton = document.querySelector("[data-open-mac-bag]");
-  const macBagCount = document.querySelector("[data-mac-bag-count]");
-  const macBagItemsContainer = document.querySelector("[data-mac-bag-items]");
-  const macBagEmptyMessage = document.querySelector("[data-mac-bag-empty]");
-  const macBagSummary = document.querySelector("[data-mac-bag-summary]");
-  const macBagSubtotal = document.querySelector("[data-mac-bag-subtotal]");
-  const macBagCheckoutButton = document.querySelector("[data-mac-bag-checkout]");
-  const macBagCheckoutMessage = document.querySelector("[data-mac-bag-checkout-message]");
-  const macBagStorageMessage = document.querySelector("[data-mac-bag-storage-message]");
-  const viewMacBagButton = document.querySelector("[data-view-mac-bag]");
-
-  if (
-    macBagDialog instanceof HTMLDialogElement &&
-    openMacBagButton instanceof HTMLButtonElement &&
-    macBagCount instanceof HTMLElement &&
-    macBagItemsContainer instanceof HTMLElement &&
-    macBagEmptyMessage instanceof HTMLElement &&
-    macBagStorageMessage instanceof HTMLElement &&
-    macBagSummary instanceof HTMLElement &&
-    macBagSubtotal instanceof HTMLElement &&
-    macBagCheckoutButton instanceof HTMLButtonElement &&
-    macBagCheckoutMessage instanceof HTMLElement &&
-    viewMacBagButton instanceof HTMLButtonElement
-  ) {
-    let macBagStorageError = "";
-
-    // Fills in any missing or outdated choice (e.g. bags saved before specs existed) with the default.
-    const normalizeBagOptions = (product, savedOptions, legacySize) => {
-      const options = getBuyDefaultOptions(product);
-      product.options.forEach((group) => {
-        const saved = savedOptions?.[group.id] ?? (group.id === "size" ? legacySize : undefined);
-        if (group.choices.some((choice) => choice.name === saved)) {
-          options[group.id] = saved;
-        }
-      });
-      return options;
-    };
-
-    const parseMacBag = (serializedBag) => {
-      const parsedBag = JSON.parse(serializedBag);
-      if (!Array.isArray(parsedBag)) {
-        throw new Error("The saved shopping bag has an invalid format.");
-      }
-
-      return parsedBag.map((item) => {
-        if (!item || typeof item !== "object" || typeof item.productKey !== "string") {
-          throw new Error("The saved shopping bag contains an invalid item.");
-        }
-        const product = macBuyProducts[item.productKey];
-        if (
-          !product ||
-          typeof item.finish !== "string" ||
-          (item.options !== undefined && (typeof item.options !== "object" || item.options === null)) ||
-          !Number.isSafeInteger(item.quantity) ||
-          item.quantity < 1
-        ) {
-          throw new Error("The saved shopping bag contains an invalid item.");
-        }
-
-        const finish = product.finishes.some((option) => option.name === item.finish)
-          ? item.finish
-          : product.finishes[0]?.name ?? "";
-
-        return {
-          productKey: item.productKey,
-          product,
-          finish,
-          options: normalizeBagOptions(product, item.options, item.size),
-          quantity: item.quantity,
-        };
-      });
-    };
-
-    const loadMacBag = () => {
-      try {
-        const serializedBag = window.localStorage.getItem(macBagStorageKey);
-        macBagItems.splice(0, macBagItems.length, ...(serializedBag ? parseMacBag(serializedBag) : []));
-        macBagStorageError = "";
-      } catch (error) {
-        macBagItems.splice(0);
-        macBagStorageError = error instanceof Error
-          ? `Your saved bag couldn't be loaded: ${error.message}`
-          : "Your saved bag couldn't be loaded.";
-      }
-    };
-
-    const saveMacBag = () => {
-      try {
-        window.localStorage.setItem(macBagStorageKey, JSON.stringify(macBagItems.map((item) => ({
-          productKey: item.productKey,
-          finish: item.finish,
-          options: item.options,
-          quantity: item.quantity,
-        }))));
-        macBagStorageError = "";
-      } catch (error) {
-        macBagStorageError = error instanceof Error
-          ? `Your bag couldn't be saved on this device: ${error.message}`
-          : "Your bag couldn't be saved on this device.";
-      }
-    };
-
-    const createBagQuantityButton = (label, action, disabled = false) => {
-      const button = document.createElement("button");
-      button.className = "mac-bag-quantity-button";
-      button.type = "button";
-      button.textContent = label;
-      button.setAttribute("aria-label", action === "increase" ? "Increase quantity" : "Decrease quantity");
-      button.dataset.bagAction = action;
-      button.disabled = disabled;
-      return button;
-    };
-
-    const renderMacBag = () => {
-      const totalQuantity = macBagItems.reduce((total, item) => total + item.quantity, 0);
-      openMacBagButton.setAttribute(
-        "aria-label",
-        `Shopping bag, ${totalQuantity} ${totalQuantity === 1 ? "item" : "items"}`,
-      );
-      macBagCount.textContent = String(totalQuantity);
-      macBagCount.hidden = totalQuantity === 0;
-      macBagItemsContainer.replaceChildren();
-      macBagEmptyMessage.hidden = totalQuantity !== 0;
-      macBagSummary.hidden = totalQuantity === 0;
-      macBagCheckoutMessage.hidden = true;
-      macBagStorageMessage.textContent = macBagStorageError;
-      macBagStorageMessage.hidden = !macBagStorageError;
-
-      let subtotal = 0;
-      macBagItems.forEach((item, index) => {
-        const unitPrice = getBuyConfigPrice(item.product, item.options);
-        const article = document.createElement("article");
-        article.className = "mac-bag-item";
-
-        const image = document.createElement("img");
-        image.className = "mac-bag-item-image";
-        image.classList.toggle("is-full-bleed", Boolean(item.product.fullBleed));
-        image.src = getBuyFinishImage(item.product, item.finish);
-        image.alt = getBuyImageAlt(item.product, item.finish);
-
-        const details = document.createElement("div");
-        details.className = "mac-bag-item-details";
-        const title = document.createElement("h3");
-        title.textContent = item.product.title;
-        details.append(title);
-
-        const specLines = [
-          ...(item.finish ? [`Finish: ${item.finish}`] : []),
-          ...item.product.options.map((group) => `${group.label}: ${item.options[group.id]}`),
-        ];
-        specLines.forEach((line) => {
-          const spec = document.createElement("p");
-          spec.textContent = line;
-          details.append(spec);
-        });
-
-        const price = document.createElement("p");
-        price.className = "mac-bag-item-price";
-        price.textContent = `${formatBuyPrice(unitPrice)} each`;
-        details.append(price);
-
-        const controls = document.createElement("div");
-        controls.className = "mac-bag-item-controls";
-        const quantity = document.createElement("span");
-        quantity.className = "mac-bag-quantity";
-        quantity.textContent = String(item.quantity);
-        quantity.setAttribute("aria-label", "Quantity");
-        const remove = document.createElement("button");
-        remove.className = "mac-bag-remove";
-        remove.type = "button";
-        remove.textContent = "Remove";
-        remove.setAttribute("aria-label", `Remove ${item.product.title} from bag`);
-        remove.dataset.bagAction = "remove";
-        remove.dataset.bagIndex = String(index);
-        const decrease = createBagQuantityButton("−", "decrease", item.quantity === 1);
-        decrease.dataset.bagIndex = String(index);
-        const increase = createBagQuantityButton("+", "increase");
-        increase.dataset.bagIndex = String(index);
-        controls.append(decrease, quantity, increase, remove);
-        details.append(controls);
-
-        const itemSubtotal = document.createElement("p");
-        itemSubtotal.className = "mac-bag-item-price";
-        itemSubtotal.textContent = formatBuyPrice(unitPrice * item.quantity);
-
-        article.append(image, details, itemSubtotal);
-        macBagItemsContainer.append(article);
-        subtotal += unitPrice * item.quantity;
-      });
-
-      macBagSubtotal.textContent = formatBuyPrice(subtotal);
-    };
-
-    addMacToBag = (productKey, product, finish, options) => {
-      const sameOptions = (a, b) => product.options.every((group) => a[group.id] === b[group.id]);
-      const existingItem = macBagItems.find((item) =>
-        item.productKey === productKey && item.finish === finish && sameOptions(item.options, options)
-      );
-
-      if (existingItem) {
-        existingItem.quantity += 1;
-      } else {
-        macBagItems.push({ productKey, product, finish, options, quantity: 1 });
-      }
-
-      saveMacBag();
-      renderMacBag();
-    };
-
-    const openMacBag = () => {
-      renderMacBag();
-      macBagDialog.showModal();
-      macBagDialog.querySelector("[data-close-mac-bag]")?.focus();
-    };
-
-    openMacBagButton.addEventListener("click", openMacBag);
-    viewMacBagButton.addEventListener("click", () => {
-      macBuyDialog.close();
-      openMacBag();
-    });
-    macBagDialog.querySelectorAll("[data-close-mac-bag]").forEach((button) => {
-      button.addEventListener("click", () => macBagDialog.close());
-    });
-    macBagDialog.addEventListener("click", (event) => {
-      if (event.target === macBagDialog) {
-        macBagDialog.close();
-      }
-    });
-    macBagItemsContainer.addEventListener("click", (event) => {
-      if (!(event.target instanceof Element)) {
-        return;
-      }
-
-      const button = event.target.closest("button[data-bag-action]");
-      const index = Number(button?.dataset.bagIndex);
-      const item = macBagItems[index];
-      if (!button || !item) {
-        return;
-      }
-
-      switch (button.dataset.bagAction) {
-        case "increase":
-          item.quantity += 1;
-          break;
-        case "decrease":
-          item.quantity = Math.max(1, item.quantity - 1);
-          break;
-        case "remove":
-          macBagItems.splice(index, 1);
-          break;
-      }
-
-      saveMacBag();
-      renderMacBag();
-    });
-    window.addEventListener("storage", (event) => {
-      if (event.key === macBagStorageKey || event.key === null) {
-        loadMacBag();
-        renderMacBag();
-      }
-    });
-    macBagCheckoutButton.addEventListener("click", () => {
-      macBagCheckoutMessage.textContent = "Checkout is a demo and isn't connected to a payment service.";
-      macBagCheckoutMessage.hidden = false;
-    });
-    loadMacBag();
-    renderMacBag();
-    if (window.location.hash === "#shopping-bag") {
-      openMacBag();
-    }
-  }
 
   const createMacBuyRadio = (name, value, checked) => {
     const input = document.createElement("input");

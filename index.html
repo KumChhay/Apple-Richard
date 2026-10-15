@@ -73,12 +73,13 @@
           <path d="m13 13 4 4"></path>
         </svg>
       </button>
-      <a class="bag-toggle" href="Mac.html#shopping-bag" aria-label="Shopping bag">
+      <button class="bag-toggle" type="button" aria-label="Shopping bag, 0 items" aria-haspopup="dialog" data-open-mac-bag>
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M5.5 8h13l1 12h-15l1-12Z"></path>
           <path d="M9 9V6a3 3 0 0 1 6 0v3"></path>
         </svg>
-      </a>
+        <span class="bag-count" data-mac-bag-count hidden>0</span>
+      </button>
     </nav>
 
     <main>
@@ -216,6 +217,29 @@
       <p>But as you pull out your device to queue up some island beats, reality hits: subscription fees are draining your vacation funds faster than a beachside cocktail. That is when inspiration strikes under a swaying palm tree. Why let standard corporate pricing gatekeep your acoustic paradise when you can unlock infinite high-fidelity sound through our exclusive, deeply discounted knockoff Apple Music subscription gift cards?</p>
       <p>Think of it as your digital passport to crystal-clear audio luxury, routed straight to your speakers without the premium baggage fee. Grab yours today, fuel your mental getaway, and stream your way to ultimate savings!</p>
     </section>
+    <dialog class="mac-bag-dialog" id="shopping-bag" aria-labelledby="mac-bag-title" data-mac-bag-dialog>
+      <div class="mac-bag-shell">
+        <header class="mac-bag-header">
+          <div>
+            <p class="mac-buy-eyebrow">Your bag</p>
+            <h2 id="mac-bag-title">Review your items.</h2>
+          </div>
+          <button class="mac-buy-close" type="button" aria-label="Close shopping bag" data-close-mac-bag>
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </header>
+        <div class="mac-bag-items" data-mac-bag-items></div>
+        <p class="mac-bag-empty" data-mac-bag-empty hidden>Your bag is empty.</p>
+        <p class="mac-bag-storage-message" data-mac-bag-storage-message role="status" hidden></p>
+        <div class="mac-bag-summary" data-mac-bag-summary hidden>
+          <p class="mac-bag-subtotal"><span>Estimated subtotal</span><strong data-mac-bag-subtotal></strong></p>
+          <p class="mac-bag-disclaimer">Prices shown are starting prices. Final configuration pricing may vary. Checkout is a demo and does not process orders or payments.</p>
+          <p class="mac-bag-checkout-message" data-mac-bag-checkout-message role="status" hidden></p>
+          <button class="hero-button hero-button-primary mac-bag-checkout" type="button" data-mac-bag-checkout>Check Out</button>
+        </div>
+        <button class="mac-bag-continue" type="button" data-close-mac-bag>Continue shopping</button>
+      </div>
+    </dialog>
     <footer class="site-footer">
       <div class="footer-content">
         <div class="footer-brand">

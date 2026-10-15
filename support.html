@@ -73,19 +73,20 @@
           <path d="m13 13 4 4"></path>
         </svg>
       </button>
-      <a class="bag-toggle" href="Mac.html#shopping-bag" aria-label="Shopping bag">
+      <button class="bag-toggle" type="button" aria-label="Shopping bag, 0 items" aria-haspopup="dialog" data-open-mac-bag>
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M5.5 8h13l1 12h-15l1-12Z"></path>
           <path d="M9 9V6a3 3 0 0 1 6 0v3"></path>
         </svg>
-      </a>
+        <span class="bag-count" data-mac-bag-count hidden>0</span>
+      </button>
     </nav>
     <main class="support-page">
       <section class="support-intro" aria-labelledby="support-heading">
         <p class="support-eyebrow">RICHARD.LLC SUPPORT</p>
         <h1 id="support-heading">A little help goes a long way.</h1>
         <p>Explore product highlights, find a quick troubleshooting tip, or get in touch with us.</p>
-        <div class="support-contact">
+        <div class="support-contact" id="support-contact">
           <div class="support-contact-copy">
             <h2>Talk to a person</h2>
             <p>Reach out by phone or email and tell us what you need help with.</p>
@@ -244,21 +245,44 @@
           <h2 id="tips-heading">A few good places to start.</h2>
         </div>
         <div class="support-tip-list">
-          <article>
+          <article id="support-tip-charging">
             <h3>Having trouble charging?</h3>
             <p>Check the cable, adapter, and device port for a secure connection. If available, try a compatible cable and adapter, then restart the device.</p>
           </article>
-          <article>
+          <article id="support-tip-software">
             <h3>Keep your software current</h3>
             <p>On iPhone or iPad, open Settings → General → Software Update. On Mac, open System Settings → General → Software Update.</p>
           </article>
-          <article>
+          <article id="support-tip-setup">
             <h3>Before service or setup</h3>
             <p>Back up important data, keep your Apple Account details handy, and check the exact model number when looking for accessories or instructions.</p>
           </article>
         </div>
       </section>
     </main>
+    <dialog class="mac-bag-dialog" id="shopping-bag" aria-labelledby="mac-bag-title" data-mac-bag-dialog>
+      <div class="mac-bag-shell">
+        <header class="mac-bag-header">
+          <div>
+            <p class="mac-buy-eyebrow">Your bag</p>
+            <h2 id="mac-bag-title">Review your items.</h2>
+          </div>
+          <button class="mac-buy-close" type="button" aria-label="Close shopping bag" data-close-mac-bag>
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </header>
+        <div class="mac-bag-items" data-mac-bag-items></div>
+        <p class="mac-bag-empty" data-mac-bag-empty hidden>Your bag is empty.</p>
+        <p class="mac-bag-storage-message" data-mac-bag-storage-message role="status" hidden></p>
+        <div class="mac-bag-summary" data-mac-bag-summary hidden>
+          <p class="mac-bag-subtotal"><span>Estimated subtotal</span><strong data-mac-bag-subtotal></strong></p>
+          <p class="mac-bag-disclaimer">Prices shown are starting prices. Final configuration pricing may vary. Checkout is a demo and does not process orders or payments.</p>
+          <p class="mac-bag-checkout-message" data-mac-bag-checkout-message role="status" hidden></p>
+          <button class="hero-button hero-button-primary mac-bag-checkout" type="button" data-mac-bag-checkout>Check Out</button>
+        </div>
+        <button class="mac-bag-continue" type="button" data-close-mac-bag>Continue shopping</button>
+      </div>
+    </dialog>
     <footer class="site-footer">
       <div class="footer-content">
         <div class="footer-brand">
