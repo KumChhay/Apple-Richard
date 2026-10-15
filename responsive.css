@@ -499,8 +499,8 @@
     font-size: 1rem;
   }
 
-  .hero-actions {
-    gap: 6px;
+  .home-banner-actions {
+    gap: 8px;
   }
 
   .hero-button {
@@ -543,6 +543,35 @@
 
   .footer-bottom {
     flex-direction: column;
+  }
+
+  /* Two columns, with Contact on its own full-width row so the email fits on one line */
+  .footer-links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .footer-column:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .footer-column a {
+    overflow-wrap: normal;
+  }
+
+  .home-banner-galaxy .home-banner-image {
+    height: 520px;
+    object-position: 72% bottom;
+  }
+
+  .home-banner-galaxy .home-banner-copy {
+    justify-content: flex-start;
+  }
+
+  .home-banner-duo .home-banner-image {
+    width: 100%;
+    height: 420px;
+    margin-top: -40px;
+    object-position: center bottom;
   }
 
   .support-page {

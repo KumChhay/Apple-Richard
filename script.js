@@ -1275,6 +1275,13 @@ if (
   };
 
   openMacBagButton.addEventListener("click", openMacBag);
+  // "Order Status" in the nav menu opens the bag on the current page
+  document.querySelectorAll("[data-open-bag-link]").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      openMacBag();
+    });
+  });
   if (viewMacBagButton instanceof HTMLButtonElement) {
     viewMacBagButton.addEventListener("click", () => {
       if (macBuyDialog instanceof HTMLDialogElement) {

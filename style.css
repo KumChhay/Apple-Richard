@@ -179,6 +179,8 @@ body {
 }
 
 .mac-product-finishes li {
+  /* Contains the hidden color label so off-screen carousel cards can't widen the page */
+  position: relative;
   width: 9px;
   height: 9px;
   border: 1px solid rgba(0, 0, 0, 0.14);
@@ -1719,31 +1721,123 @@ body {
   stroke-width: 1.6;
 }
 
-/* --- 8. iPhone Campaign Banner --- */
-.hero {
+/* --- 8. Homepage Banners (Galaxy joke card + iPhone Duo) --- */
+.home-banner {
   position: relative;
   width: calc(100% - 24px);
-  margin: 24px auto 0;
+  margin: 12px auto 0;
   overflow: hidden;
   border-radius: 8px;
-  background-color: #fff;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.hero-image {
+/* Same lift as the product panels below */
+.home-banner:hover,
+.home-banner:focus-within {
+  z-index: 1;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
+  transform: translateY(-6px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-banner {
+    transition: none;
+  }
+}
+
+.home-banner:first-of-type {
+  margin-top: 24px;
+}
+
+.home-banner-image {
   display: block;
   width: 100%;
-  height: auto;
+  object-fit: cover;
 }
 
-.hero-actions {
+.home-banner-copy {
   position: absolute;
-  top: 30%;
-  left: 50%;
+  inset: 0;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  padding: clamp(32px, 5vw, 64px) clamp(24px, 6vw, 80px);
+}
+
+.home-banner-copy h2 {
+  margin-bottom: 8px;
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+.home-banner-tagline {
+  margin-bottom: 20px;
+  font-size: clamp(17px, 1.8vw, 24px);
+  line-height: 1.3;
+}
+
+.home-banner-actions {
+  display: flex;
+  flex-wrap: wrap;
   gap: 12px;
-  transform: translateX(-50%);
-  white-space: nowrap;
+}
+
+/* Galaxy: Samsung's violet key visual, copy on the left */
+.home-banner-galaxy {
+  color: #fff;
+  background-color: #2a2840;
+}
+
+.home-banner-galaxy .home-banner-image {
+  height: clamp(380px, 36vw, 540px);
+  object-position: right center;
+}
+
+.home-banner-galaxy .home-banner-copy {
+  justify-content: center;
+  max-width: 560px;
+}
+
+.home-banner-eyebrow {
+  margin-bottom: 10px;
+  color: #c9c4ff;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.home-banner-fine-print {
+  margin-top: 16px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 12px;
+}
+
+/* iPhone Duo: Apple-style centered copy above the product */
+.home-banner-duo {
+  color: #1d1d1f;
+  background-color: #f5f5f7;
+}
+
+/* Copy sits above the photo; the photo's empty grey top tucks under it */
+.home-banner-duo {
+  display: flex;
+  flex-direction: column;
+}
+
+.home-banner-duo .home-banner-copy {
+  position: relative;
+  z-index: 1;
+  order: -1;
+  align-items: center;
+  padding-bottom: 0;
+  text-align: center;
+}
+
+.home-banner-duo .home-banner-image {
+  width: min(100%, 1200px);
+  height: auto;
+  margin: calc(-1 * min(10vw, 120px)) auto 0;
 }
 
 /* Mac page banner card: Richard's Special Mac (reflective finish comes from .reflective-surface) */
